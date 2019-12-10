@@ -1,0 +1,10 @@
+[ {
+  "values" : [ "3.0.4.0" ],
+  "name" : "AllureVersion"
+}, {
+  "values" : [ "Windows_NT" ],
+  "name" : "OS"
+}, {
+  "values" : [ "This is value of test variable. Remove it from allureConfig.json" ],
+  "name" : "TestVariable"
+} ]

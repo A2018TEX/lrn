@@ -1,0 +1,141 @@
+[ {
+  "uid" : "5c48abb9f9d45f8d",
+  "name" : "AddWorkflow",
+  "time" : {
+    "start" : 1574857871675,
+    "stop" : 1574857871680,
+    "duration" : 5
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "11bbe91a98721bab",
+  "name" : "AddBuyerToClosingFile",
+  "time" : {
+    "start" : 1574857763873,
+    "stop" : 1574857847258,
+    "duration" : 83385
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "78c4f1cd6aef0cb6",
+  "name" : "AddVendorWithUnderwriterType",
+  "time" : {
+    "start" : 1574857844469,
+    "stop" : 1574857864086,
+    "duration" : 19617
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "82f99b20767f057d",
+  "name" : "AddWorkflowNotification",
+  "time" : {
+    "start" : 1574857847258,
+    "stop" : 1574857871570,
+    "duration" : 24312
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "85c59ae8aab2fd6d",
+  "name" : "AddCommentToWorkflow",
+  "time" : {
+    "start" : 1574857763873,
+    "stop" : 1574857844468,
+    "duration" : 80595
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "76204aebd13bd087",
+  "name" : "AddMoneyTest",
+  "time" : {
+    "start" : 1574857763873,
+    "stop" : 1574857839892,
+    "duration" : 76019
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "59a544529cc979ab",
+  "name" : "AddBuyerAddressTest",
+  "time" : {
+    "start" : 1574857763873,
+    "stop" : 1574857848898,
+    "duration" : 85025
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "94b4fd78b0628960",
+  "name" : "AddDetailPropertyToClosingFile",
+  "time" : {
+    "start" : 1574857871646,
+    "stop" : 1574857871651,
+    "duration" : 5
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "d399a2622859cf7f",
+  "name" : "AddParticipants",
+  "time" : {
+    "start" : 1574857871663,
+    "stop" : 1574857871668,
+    "duration" : 5
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "d7f85f3bee7cb9b9",
+  "name" : "AddNoteToNotes",
+  "time" : {
+    "start" : 1574857763873,
+    "stop" : 1574857778698,
+    "duration" : 14825
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "a6eb58b5c4e80297",
+  "name" : "AddImportantDatesTest",
+  "time" : {
+    "start" : 1574857871656,
+    "stop" : 1574857871661,
+    "duration" : 5
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "4f296a7d803a4edc",
+  "name" : "AddClosingFile",
+  "time" : {
+    "start" : 1574857763873,
+    "stop" : 1574857853337,
+    "duration" : 89464
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c3d69adee81f4cb8",
+  "name" : "AddVendorWithLenderType",
+  "time" : {
+    "start" : 1574857839893,
+    "stop" : 1574857860509,
+    "duration" : 20616
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "344c21045c30ae11",
+  "name" : "AddSellerToClosingFile",
+  "time" : {
+    "start" : 1574857778700,
+    "stop" : 1574857864858,
+    "duration" : 86158
+  },
+  "status" : "failed",
+  "severity" : "normal"
+} ]

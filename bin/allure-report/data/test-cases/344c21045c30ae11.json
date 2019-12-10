@@ -1,0 +1,56 @@
+{
+  "uid" : "344c21045c30ae11",
+  "name" : "AddSellerToClosingFile",
+  "fullName" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddSellerToClosingFile",
+  "historyId" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddSellerToClosingFile",
+  "time" : {
+    "start" : 1574857778700,
+    "stop" : 1574857864858,
+    "duration" : 86158
+  },
+  "status" : "failed",
+  "statusMessage" : "System.NullReferenceException : Object reference not set to an instance of an object.",
+  "statusTrace" : "   at Laren.E2ETests.Core.Framework.DbAccess.Repository.AppMemberRepository.GetSellerLastName(String name) in C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Core\\Framework\\DbAccess\\Repository\\AppMemberRepository.cs:line 25\r\n   at Laren.E2ETests.Tests.WorkWithClosingFileTest.AddSellerToClosingFile() in C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Tests\\WorkWithClosingFileTest.cs:line 619",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "DESKTOP-FFCCSJU"
+  }, {
+    "name" : "testClass",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "AddSellerToClosingFile"
+  }, {
+    "name" : "package",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "suite",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "thread",
+    "value" : "ParallelWorker#4"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Defected tests",
+      "matchedStatuses" : [ "failed" ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "344c21045c30ae11.json",
+  "parameterValues" : [ ]
+}

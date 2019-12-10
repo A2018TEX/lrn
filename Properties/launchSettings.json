@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "Laren.E2ETests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Qa"
+      },
+      "nativeDebugging": true
+    },
+    "Laren.E2ETests-Qa": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Qa"
+      },
+      "nativeDebugging": true
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "total" : 1,
+  "items" : [ {
+    "uid" : "a954278df98349eede48171cd60cfb67",
+    "name" : "Laren.E2ETests.Tests.WorkWithClosingFileTest",
+    "statistic" : {
+      "failed" : 3,
+      "broken" : 0,
+      "skipped" : 4,
+      "passed" : 7,
+      "unknown" : 0,
+      "total" : 14
+    }
+  } ]
+}

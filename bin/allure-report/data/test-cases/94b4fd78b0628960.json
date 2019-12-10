@@ -1,0 +1,84 @@
+{
+  "uid" : "94b4fd78b0628960",
+  "name" : "AddDetailPropertyToClosingFile",
+  "fullName" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddDetailPropertyToClosingFile",
+  "historyId" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddDetailPropertyToClosingFile",
+  "time" : {
+    "start" : 1574857871646,
+    "stop" : 1574857871651,
+    "duration" : 5
+  },
+  "status" : "skipped",
+  "statusMessage" : "Need to fix Assert",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "Need to fix Assert",
+    "steps" : [ {
+      "name" : "Test was ignored by reason: Need to fix Assert",
+      "time" : {
+        "start" : 1574857871644,
+        "stop" : 1574857871645,
+        "duration" : 1
+      },
+      "status" : "skipped",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "attachmentsCount" : 0
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "DESKTOP-FFCCSJU"
+  }, {
+    "name" : "testClass",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "AddDetailPropertyToClosingFile"
+  }, {
+    "name" : "package",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "suite",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "thread",
+    "value" : "NonParallelWorker"
+  }, {
+    "name" : "subSuite",
+    "value" : "Ignored tests/test-cases"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Ignored tests",
+      "matchedStatuses" : [ "skipped" ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "94b4fd78b0628960.json",
+  "parameterValues" : [ ]
+}

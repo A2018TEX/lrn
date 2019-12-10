@@ -1,0 +1,84 @@
+{
+  "uid" : "d399a2622859cf7f",
+  "name" : "AddParticipants",
+  "fullName" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddParticipants",
+  "historyId" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddParticipants",
+  "time" : {
+    "start" : 1574857871663,
+    "stop" : 1574857871668,
+    "duration" : 5
+  },
+  "status" : "skipped",
+  "statusMessage" : "NEED TO ADD ASSERTS",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "NEED TO ADD ASSERTS",
+    "steps" : [ {
+      "name" : "Test was ignored by reason: NEED TO ADD ASSERTS",
+      "time" : {
+        "start" : 1574857871663,
+        "stop" : 1574857871663,
+        "duration" : 0
+      },
+      "status" : "skipped",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "attachmentsCount" : 0
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "DESKTOP-FFCCSJU"
+  }, {
+    "name" : "testClass",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "AddParticipants"
+  }, {
+    "name" : "package",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "suite",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "thread",
+    "value" : "NonParallelWorker"
+  }, {
+    "name" : "subSuite",
+    "value" : "Ignored tests/test-cases"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Ignored tests",
+      "matchedStatuses" : [ "skipped" ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "d399a2622859cf7f.json",
+  "parameterValues" : [ ]
+}

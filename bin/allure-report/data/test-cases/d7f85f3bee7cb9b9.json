@@ -1,0 +1,56 @@
+{
+  "uid" : "d7f85f3bee7cb9b9",
+  "name" : "AddNoteToNotes",
+  "fullName" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddNoteToNotes",
+  "historyId" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddNoteToNotes",
+  "time" : {
+    "start" : 1574857763873,
+    "stop" : 1574857778698,
+    "duration" : 14825
+  },
+  "status" : "failed",
+  "statusMessage" : "OpenQA.Selenium.WebDriverException : unknown error: session deleted because of page crash\nfrom tab crashed\n  (Session info: headless chrome=78.0.3904.70)",
+  "statusTrace" : "   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)\r\n   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.Remote.RemoteWebDriver.set_Url(String value)\r\n   at Laren.E2ETests.Core.Framework.Pages.UserVerifyPage.GoToUserVerifyPage(Guid uniqueidentifier) in C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Core\\Framework\\Pages\\UserVerifyPage.cs:line 23\r\n   at Laren.E2ETests.Core.Framework.HelperSetUp.CreateNewUser(String userEmail) in C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Core\\Framework\\HelperSetUp.cs:line 77\r\n   at Laren.E2ETests.Tests.WorkWithClosingFileTest.BeforeEachTest(TestScope`1 testScope) in C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Tests\\WorkWithClosingFileTest.cs:line 53\r\n   at Laren.E2ETests.TestScope`1.BeforeTest() in C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\TestScope.cs:line 101\r\n   at Laren.E2ETests.TestScope`1..ctor(IConfiguration configuration, Action`1 beforeEachTest, Action`1 afterEachTest, T context) in C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\TestScope.cs:line 92\r\n   at Laren.E2ETests.Tests.WorkWithClosingFileTest.AddNoteToNotes() in C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Tests\\WorkWithClosingFileTest.cs:line 493",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "DESKTOP-FFCCSJU"
+  }, {
+    "name" : "testClass",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "AddNoteToNotes"
+  }, {
+    "name" : "package",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "suite",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "thread",
+    "value" : "ParallelWorker#4"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Defected tests",
+      "matchedStatuses" : [ "failed" ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "d7f85f3bee7cb9b9.json",
+  "parameterValues" : [ ]
+}

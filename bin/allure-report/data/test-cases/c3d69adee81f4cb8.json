@@ -1,0 +1,54 @@
+{
+  "uid" : "c3d69adee81f4cb8",
+  "name" : "AddVendorWithLenderType",
+  "fullName" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddVendorWithLenderType",
+  "historyId" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddVendorWithLenderType",
+  "time" : {
+    "start" : 1574857839893,
+    "stop" : 1574857860509,
+    "duration" : 20616
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "DESKTOP-FFCCSJU"
+  }, {
+    "name" : "testClass",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "AddVendorWithLenderType"
+  }, {
+    "name" : "package",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "suite",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "thread",
+    "value" : "ParallelWorker#6"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Passed tests",
+      "matchedStatuses" : [ "passed" ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "c3d69adee81f4cb8.json",
+  "parameterValues" : [ ]
+}

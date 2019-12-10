@@ -1,0 +1,54 @@
+{
+  "uid" : "82f99b20767f057d",
+  "name" : "AddWorkflowNotification",
+  "fullName" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddWorkflowNotification",
+  "historyId" : "Laren.E2ETests.Tests.WorkWithClosingFileTest.AddWorkflowNotification",
+  "time" : {
+    "start" : 1574857847258,
+    "stop" : 1574857871570,
+    "duration" : 24312
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "DESKTOP-FFCCSJU"
+  }, {
+    "name" : "testClass",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "AddWorkflowNotification"
+  }, {
+    "name" : "package",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "suite",
+    "value" : "Laren.E2ETests.Tests.WorkWithClosingFileTest"
+  }, {
+    "name" : "thread",
+    "value" : "ParallelWorker#5"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Passed tests",
+      "matchedStatuses" : [ "passed" ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "82f99b20767f057d.json",
+  "parameterValues" : [ ]
+}

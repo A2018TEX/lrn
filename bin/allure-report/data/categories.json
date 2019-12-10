@@ -1,0 +1,226 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Passed tests",
+    "children" : [ {
+      "children" : [ {
+        "name" : "AddBuyerToClosingFile",
+        "uid" : "11bbe91a98721bab",
+        "parentUid" : "a15971e48ddfd2dfbfc5062500b234d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1574857763873,
+          "stop" : 1574857847258,
+          "duration" : 83385
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "AddCommentToWorkflow",
+        "uid" : "85c59ae8aab2fd6d",
+        "parentUid" : "a15971e48ddfd2dfbfc5062500b234d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1574857763873,
+          "stop" : 1574857844468,
+          "duration" : 80595
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "AddBuyerAddressTest",
+        "uid" : "59a544529cc979ab",
+        "parentUid" : "a15971e48ddfd2dfbfc5062500b234d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1574857763873,
+          "stop" : 1574857848898,
+          "duration" : 85025
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "AddClosingFile",
+        "uid" : "4f296a7d803a4edc",
+        "parentUid" : "a15971e48ddfd2dfbfc5062500b234d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1574857763873,
+          "stop" : 1574857853337,
+          "duration" : 89464
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "AddVendorWithLenderType",
+        "uid" : "c3d69adee81f4cb8",
+        "parentUid" : "a15971e48ddfd2dfbfc5062500b234d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1574857839893,
+          "stop" : 1574857860509,
+          "duration" : 20616
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "AddVendorWithUnderwriterType",
+        "uid" : "78c4f1cd6aef0cb6",
+        "parentUid" : "a15971e48ddfd2dfbfc5062500b234d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1574857844469,
+          "stop" : 1574857864086,
+          "duration" : 19617
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "AddWorkflowNotification",
+        "uid" : "82f99b20767f057d",
+        "parentUid" : "a15971e48ddfd2dfbfc5062500b234d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1574857847258,
+          "stop" : 1574857871570,
+          "duration" : 24312
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "a15971e48ddfd2dfbfc5062500b234d9"
+    } ],
+    "uid" : "dd8992aead2124d0571b6a4556de1945"
+  }, {
+    "name" : "Defected tests",
+    "children" : [ {
+      "name" : "OpenQA.Selenium.WebDriverException : invalid session id",
+      "children" : [ {
+        "name" : "AddMoneyTest",
+        "uid" : "76204aebd13bd087",
+        "parentUid" : "f6770b457a3a0e61bfbd6abd7d4f1eae",
+        "status" : "failed",
+        "time" : {
+          "start" : 1574857763873,
+          "stop" : 1574857839892,
+          "duration" : 76019
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "f6770b457a3a0e61bfbd6abd7d4f1eae"
+    }, {
+      "name" : "OpenQA.Selenium.WebDriverException : unknown error: session deleted because of page crash\nfrom tab crashed\n  (Session info: headless chrome=78.0.3904.70)",
+      "children" : [ {
+        "name" : "AddNoteToNotes",
+        "uid" : "d7f85f3bee7cb9b9",
+        "parentUid" : "1a32d3309cb638feb66aadbbf5d6353f",
+        "status" : "failed",
+        "time" : {
+          "start" : 1574857763873,
+          "stop" : 1574857778698,
+          "duration" : 14825
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "1a32d3309cb638feb66aadbbf5d6353f"
+    }, {
+      "name" : "System.NullReferenceException : Object reference not set to an instance of an object.",
+      "children" : [ {
+        "name" : "AddSellerToClosingFile",
+        "uid" : "344c21045c30ae11",
+        "parentUid" : "d5efb79a74546d2a789f42de5297939a",
+        "status" : "failed",
+        "time" : {
+          "start" : 1574857778700,
+          "stop" : 1574857864858,
+          "duration" : 86158
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "d5efb79a74546d2a789f42de5297939a"
+    } ],
+    "uid" : "d9173fbd69e7665d4bf8477b36adf448"
+  }, {
+    "name" : "Ignored tests",
+    "children" : [ {
+      "name" : "Need to fix Assert",
+      "children" : [ {
+        "name" : "AddDetailPropertyToClosingFile",
+        "uid" : "94b4fd78b0628960",
+        "parentUid" : "3f6327e217af802077cdc2fcca3a6d36",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1574857871646,
+          "stop" : 1574857871651,
+          "duration" : 5
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "AddImportantDatesTest",
+        "uid" : "a6eb58b5c4e80297",
+        "parentUid" : "3f6327e217af802077cdc2fcca3a6d36",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1574857871656,
+          "stop" : 1574857871661,
+          "duration" : 5
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "3f6327e217af802077cdc2fcca3a6d36"
+    }, {
+      "name" : "NEED TO ADD ASSERTS",
+      "children" : [ {
+        "name" : "AddParticipants",
+        "uid" : "d399a2622859cf7f",
+        "parentUid" : "a2581a68f8be69fa6c2dec4f5b16ef86",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1574857871663,
+          "stop" : 1574857871668,
+          "duration" : 5
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "a2581a68f8be69fa6c2dec4f5b16ef86"
+    }, {
+      "name" : "Need to change login. remove WorkFlow Data",
+      "children" : [ {
+        "name" : "AddWorkflow",
+        "uid" : "5c48abb9f9d45f8d",
+        "parentUid" : "5ecc13380ee6e97a20b52d3b58dc100e",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1574857871675,
+          "stop" : 1574857871680,
+          "duration" : 5
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5ecc13380ee6e97a20b52d3b58dc100e"
+    } ],
+    "uid" : "de462066317a26259da5dbde82325643"
+  } ]
+}

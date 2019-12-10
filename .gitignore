@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Laren/v16/Server/sqlite3
+/.vs
+/AWSLambda/bin/Debug/netcoreapp2.1
+/AWSLambda/obj/Debug/netcoreapp2.1
+/AWSLambda/obj
+/E2ETests/bin
+/E2ETests/obj
+/E2ETests/Properties
+/Laren.TestReporter/bin/Debug
+/Laren.TestReporter/obj
