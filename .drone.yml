@@ -4,20 +4,16 @@ name: default
 platform:
   arch: amd64
 
-services:
-  - name: microsoft/dotnet:sdk
-    pull: if-not-exists
-    image: microsoft/dotnet:sdk
-
 steps:   
   - name: continuous
+    pull: if-not-exists
     image: microsoft/dotnet:sdk
     commands:
       - dotnet restore
       - dotnet build --configuration Debug Laren.E2ETests.csproj
       - dotnet test Laren.E2ETests.csproj --no-build --configuration Debug
     environment:
-      CAKE_VERSION: "0.30.0"
+      ASPNETCORE_ENVIRONMENT: "Staging"
     when:
       branch:
         exclude:
