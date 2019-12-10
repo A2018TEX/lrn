@@ -4,6 +4,11 @@ name: default
 platform:
   arch: amd64
 
+services:
+  - name: microsoft/dotnet:sdk
+    pull: if-not-exists
+    image: microsoft/dotnet:sdk
+
 steps:   
   - name: continuous
     image: microsoft/dotnet:sdk
@@ -19,8 +24,3 @@ steps:
           - develop
           - master
           - qa
-
-services:
-  - name: microsoft/dotnet:sdk
-    pull: if-not-exists
-    image: microsoft/dotnet:sdk
