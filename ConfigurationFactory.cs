@@ -7,7 +7,8 @@ namespace Laren.E2ETests
     {
         public IConfiguration CreateInstance()
         {
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Qa";
+            Console.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Staging";
             var builder = new ConfigurationBuilder()
             .AddJsonFile($"appsettings.json", false, true)
             .AddJsonFile($"appsettings.{environmentName}.json", true, true)
