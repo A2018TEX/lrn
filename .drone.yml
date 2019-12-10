@@ -22,5 +22,4 @@ steps:
       branch:
         exclude:
           - develop
-          - master
           - qa
