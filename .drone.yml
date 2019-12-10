@@ -1,48 +1,10 @@
 kind: pipeline
-# name: regression-tests
 
 platform:
   arch: amd64
-  
-# deploy: &deploy
-#   image: peloton/drone-rancher
-#   settings:
-#     confirm: true
-#     timeout: 600
-#     url: https://rancher.pls-dev.com
-#     access_key:
-#       from_secret: RANCHER_ACCESS_KEY
-#     secret_key:
-#       from_secret: RANCHER_SECRET_KEY
-
-# api: &api
-#   image: plugins/ecr
-#   settings:
-#     dockerfile: LarenTest/Dockerfile
-#     registry: 024550159229.dkr.ecr.us-east-1.amazonaws.com
-#     repo: 024550159229.dkr.ecr.us-east-1.amazonaws.com/regression-tests
-#     access_key:
-#       from_secret: AWS_ACCESS_KEY
-#     secret_key:
-#       from_secret: AWS_SECRET_KEY
-#     region:
-#       from_secret: AWS_REGION
-#     nuget_api_key:
-#       from_secret: NUGET_APIKEY
-#     tags:
-#       - "${DRONE_BRANCH}"
-#       - "${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}"
-
-# slack: &slack
-#   image: plugins/slack
-#   settings:
-#     channel: hangfire-builds
-#     username: buildbot
-#     webhook: https://hooks.slack.com/services/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
 
 steps:
   - name: build
-    # <<: *api
     environment:
       CAKE_VERSION: "0.30.0"
     when:
@@ -55,11 +17,6 @@ steps:
   - name: continuous
     image: microsoft/dotnet:sdk
     commands:
-      # - apt-get update 
-      # - apt-get install -y nodejs 
-      # - mkdir tools 
-      # - cp .templates/tools-csproj.template tools/tools.csproj 
-      # - dotnet add tools/tools.csproj package Cake.CoreCLR -v $CAKE_VERSION --package-directory tools/Cake.CoreCLR.$CAKE_VERSION 
       - dotnet restore
       - dotnet build --configuration Debug Laren.E2ETests.csproj
       - dotnet test Laren.E2ETests.csproj --no-build --configuration Debug
@@ -72,36 +29,3 @@ steps:
           - develop
           - master
           - qa
-
-  # - name: deploy-dev
-  #   <<: *deploy
-  #   settings:
-  #     docker_image: "024550159229.dkr.ecr.us-east-1.amazonaws.com/regression-tests:${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}"
-  #     service: "dev-microservices/regression-tests-dev"
-  #   when:
-  #     branch:
-  #       - develop
-
-  # - name: deploy-qa
-  #   <<: *deploy
-  #   settings:
-  #     docker_image: "024550159229.dkr.ecr.us-east-1.amazonaws.com/regression-tests:${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}"
-  #     service: "dev-microservices/regression-tests-qa"
-  #   when:
-  #     branch:
-  #       - qa
-
-  # - name: deploy-prod
-  #   <<: *deploy
-  #   settings:
-  #     docker_image: "024550159229.dkr.ecr.us-east-1.amazonaws.com/regression-tests:${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}"
-  #     service: "dev-microservices/regression-tests-prod"
-  #   when:
-  #     branch:
-  #       - master
-
-  # - name: notify-failures
-  #   <<: *slack
-  #   when:
-  #     status:
-  #       - failure
