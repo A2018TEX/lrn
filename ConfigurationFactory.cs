@@ -8,13 +8,14 @@ namespace Laren.E2ETests
         public IConfiguration CreateInstance()
         {
             Console.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Staging";
-            throw new Exception($"{environmentName} - ${Environment.GetEnvironmentVariable("DBConn")}");
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             var builder = new ConfigurationBuilder()
             .AddJsonFile($"appsettings.json", false, true)
             .AddJsonFile($"appsettings.{environmentName}.json", true, true)
             .AddEnvironmentVariables();
             IConfiguration configuration = builder.Build();
+            
+            throw new Exception($"{environmentName} - ${configuration.GetSection("DBConn")?.Value}");
             return configuration;
         }
     }
