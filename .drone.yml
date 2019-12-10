@@ -20,7 +20,6 @@ steps:
       - dotnet restore
       - dotnet build --configuration Debug Laren.E2ETests.csproj
       - dotnet test Laren.E2ETests.csproj --no-build --configuration Debug
-      # - dotnet tools/Cake.CoreCLR.$CAKE_VERSION/cake.coreclr/$CAKE_VERSION/Cake.dll build.cake -target="Default" -configuration="Release" 
     environment:
       CAKE_VERSION: "0.30.0"
     when:
