@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Laren.E2ETests", "Laren.E2ETests.csproj", "{091A0266-3256-45F1-B892-BD17F2215D5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
+		Qa|Any CPU = Qa|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Stage|Any CPU = Stage|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Development|Any CPU.ActiveCfg = Development|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Development|Any CPU.Build.0 = Development|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Qa|Any CPU.ActiveCfg = Qa|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Qa|Any CPU.Build.0 = Qa|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Stage|Any CPU.ActiveCfg = Stage|Any CPU
+		{091A0266-3256-45F1-B892-BD17F2215D5A}.Stage|Any CPU.Build.0 = Stage|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9394FE22-3FD5-4B2B-8D6E-97FFAFDEB8B4}
+	EndGlobalSection
+EndGlobal
