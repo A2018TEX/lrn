@@ -23,4 +23,4 @@ steps:
 services:
   - name: microsoft/dotnet:sdk
     pull: if-not-exists
-    image: redis
+    image: microsoft/dotnet:sdk
