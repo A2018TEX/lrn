@@ -1,19 +1,10 @@
 kind: pipeline
+name: default
 
 platform:
   arch: amd64
 
-steps:
-  - name: build
-    environment:
-      CAKE_VERSION: "0.30.0"
-    when:
-      branch:
-        include:
-          - develop
-          - master
-          - qa
-          
+steps:   
   - name: continuous
     image: microsoft/dotnet:sdk
     commands:
@@ -28,3 +19,8 @@ steps:
           - develop
           - master
           - qa
+
+services:
+  - name: microsoft/dotnet:sdk
+    pull: if-not-exists
+    image: redis
