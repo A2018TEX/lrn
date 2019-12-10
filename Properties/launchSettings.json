@@ -10,7 +10,7 @@
     "Laren.E2ETests-Qa": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Qa"
+        "ASPNETCORE_ENVIRONMENT": "Staging"
       },
       "nativeDebugging": true
     }
