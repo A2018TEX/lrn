@@ -10745,11 +10745,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anuitex\\source\\repos\\lrn\\E2ETests\\Laren.E2ETests.csproj",
+      "projectUniqueName": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\Laren.E2ETests.csproj",
       "projectName": "Laren.E2ETests",
-      "projectPath": "C:\\Users\\Anuitex\\source\\repos\\lrn\\E2ETests\\Laren.E2ETests.csproj",
+      "projectPath": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\Laren.E2ETests.csproj",
       "packagesPath": "C:\\Users\\Anuitex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anuitex\\source\\repos\\lrn\\E2ETests\\obj\\",
+      "outputPath": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
