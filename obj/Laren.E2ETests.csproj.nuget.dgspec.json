@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Laren.E2ETests.csproj": {}
+    "C:\\Users\\Anuitex\\Desktop\\larene2etests\\Laren.E2ETests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Laren.E2ETests.csproj": {
+    "C:\\Users\\Anuitex\\Desktop\\larene2etests\\Laren.E2ETests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Laren.E2ETests.csproj",
+        "projectUniqueName": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\Laren.E2ETests.csproj",
         "projectName": "Laren.E2ETests",
-        "projectPath": "C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Laren.E2ETests.csproj",
+        "projectPath": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\Laren.E2ETests.csproj",
         "packagesPath": "C:\\Users\\Anuitex\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\obj\\",
+        "outputPath": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -43,14 +43,6 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
-            "BrowserStack": {
-              "target": "Package",
-              "version": "[2.0.1, )"
-            },
-            "BrowserStackLocal": {
-              "target": "Package",
-              "version": "[1.4.0, )"
-            },
             "Dapper": {
               "target": "Package",
               "version": "[2.0.4, )"
@@ -70,10 +62,6 @@
             "Firefox": {
               "target": "Package",
               "version": "[3.6.6, )"
-            },
-            "Lucene.Net": {
-              "target": "Package",
-              "version": "[3.0.3, )"
             },
             "MSTest.TestFramework": {
               "target": "Package",

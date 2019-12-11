@@ -45,12 +45,17 @@ namespace Laren.E2ETests
                     case "chrome":
 
 #if !DEBUG
-                         var capabilities = new DesiredCapabilities("chrome", "78.0", new Platform(PlatformType.Any));
-                        capabilities.SetCapability("enableVNC", true);
-                        capabilities.SetCapability("screenResolution", "1920x1080x24");
-                        _driver = new RemoteWebDriver(new Uri(Configuration.GetSection("HubUrl").Value), capabilities, TimeSpan.FromSeconds(80));
-                     
+                         var chromeOptions = new ChromeOptions();
+                        var path = Directory.GetCurrentDirectory();
 
+                        chromeOptions.AddUserProfilePreference("download.default_directory", path);
+                        chromeOptions.AddUserProfilePreference("disable-popup-blocking", "true");
+                        chromeOptions.AddAdditionalCapability("enableVNC", true, true);
+                        chromeOptions.AddAdditionalCapability("sessionTimeout", "2m", true);
+
+                        _driver = new RemoteWebDriver(new Uri(Configuration.GetSection("HubUrl").Value), chromeOptions/*, TimeSpan.FromSeconds(80)*/);
+
+                        //_driver = new ChromeDriver(Directory.GetCurrentDirectory());
                         var allowFile = _driver as IAllowsFileDetection;
                         if (allowFile != null)
                         {
@@ -64,17 +69,9 @@ namespace Laren.E2ETests
                         var path = Directory.GetCurrentDirectory();
 
                         chromeOptions.AddUserProfilePreference("download.default_directory", path);
-                        //chromeOptions.AddUserProfilePreference("intl.accept_languages", "nl");
                         chromeOptions.AddUserProfilePreference("disable-popup-blocking", "true");
-
-                        //var capabilities = new DesiredCapabilities("chrome", "78.0", new Platform(PlatformType.Any));
-
-                        //capabilities.SetCapability(ChromeOptions.Capability, chromeOptions.ToCapabilities());
-                        //capabilities.SetCapability("enableVNC", true);
-                        //capabilities.SetCapability("screenResolution", "1920x1080x24");
-                        //capabilities.SetCapability("sessionTimeout", "2m");
-                        //capabilities.SetCapability(ChromeOptions.Capability, chromeOptions);
                         chromeOptions.AddAdditionalCapability("enableVNC", true, true);
+                        chromeOptions.AddAdditionalCapability("sessionTimeout", "2m", true);
 
                         _driver = new RemoteWebDriver(new Uri(Configuration.GetSection("HubUrl").Value), chromeOptions/*, TimeSpan.FromSeconds(80)*/);
 
