@@ -22,14 +22,13 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
         public IWebElement BuyesrName => _driver.FindElement(By.XPath("//span[@class='action ng-star-inserted'][1]"));
         public IWebElement SellerMenuItem => _driver.FindElement(By.XPath("//li[@class='ng-star-inserted']/a[contains(text(),' Seller')]"));
         public IWebElement NotesMenuItem => _driver.FindElement(By.XPath("//li[@class='ng-star-inserted']/a[contains(text(),' Notes')]"));
-        //public IWebElement WorkflowMenuItem => _driver.FindElement(By.XPath("//li[@class='ng-star-inserted']/a[contains(text(),' Workflow')]"));
-        public By WorkflowMenuItem => By.XPath("//li[@class='ng-star-inserted']/a[contains(text(),' Workflow')]");
+        public IWebElement WorkflowMenuItem => _driver.FindElement(By.XPath("//li[@class='ng-star-inserted']/a[contains(text(),' Workflow')]"));
         public By VendorsMenuItem => By.XPath("//li[@class='ng-star-inserted']/a[contains(text(),'Vendors')]");
         public IWebElement ViewWidgets => _driver.FindElement(By.XPath("//button[contains(text(),' View Widgets ')]/span"));
         public IWebElement PropertyMaps => _driver.FindElement(By.XPath("//label[contains(text(),'Property maps')]"));
         public IWebElement SaveButton =>_driver.FindElement(By.XPath("//button[@type='submit']"));
         public IWebElement DetailsCheckBox => _driver.FindElement(By.XPath("//label[contains(text(),'Details')]"));
-        public By DocumentsItemOnDropDown => By.Id("but-1");
+        public IWebElement DocumentsItemOnDropDown => _driver.FindElement(By.Id("but-1"));
         public IWebElement MenuDropDown => _driver.FindElement(By.XPath("//clr-dropdown[@class='dropdown open ng-star-inserted']//clr-icon[@shape='bars']"));
         public IWebElement LibrarySubItem => _driver.FindElement(By.XPath("//button[contains(text(), 'Library')]"));
         public IWebElement DraftsSubItem => _driver.FindElement(By.XPath("//button[contains(text(), 'Drafts')]"));
@@ -145,16 +144,9 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
         public WorkFlowPageNavigation ClicWorkflowMenuItem()
         {
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//li[@class='ng-star-inserted']/a[contains(text(),' Notes')]")));
-            try
-            {
-                WorkflowMenuItem.WaitAndClickUsingIJavaScriptExecutor(_driver);
-            }
-            catch
-            {
-                WorkflowMenuItem.WaitAndClickUsingIJavaScriptExecutor(_driver);
-            }
+            WorkflowMenuItem.Click();
             return this;
-        }
+        }       
 
         public bool Address1IsElementDisplayed()
         {
@@ -211,7 +203,11 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
         public WorkFlowPageNavigation ClickOnMenuDropDown()
         {
             Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//clr-dropdown[@class='dropdown open ng-star-inserted']//clr-icon[@shape='bars']")));
-            MenuDropDown.Click();
+            var act = new Actions(_driver);
+            act.MoveToElement(MenuDropDown).Click();
+            act.Build().Perform();
+
+            //MenuDropDown.Click();
             return this;
         }
         public WorkFlowPageNavigation GoToDocumentsDraftPage()
@@ -232,25 +228,25 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
         public WorkFlowPageNavigation ClickOnDocumentsItemOnDropDown()
         {
             ClickOnMenuDropDown();
-            //Wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("but-1")));
-            //DocumentsItemOnDropDown.Click();
-            try
-            {
-                DocumentsItemOnDropDown.WaitAndClick(_driver);
-            }
-            catch
-            {
-                DocumentsItemOnDropDown.WaitAndClick(_driver);
-
-            }
+            Wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("but-1")));
+            DocumentsItemOnDropDown.Click();
             return this;
         }        
         public WorkFlowPageNavigation GoToDocumentsLibraryPage()
         {
             var actions = new Actions(_driver);
             ClickOnDocumentsItemOnDropDown();
-            Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[contains(text(), 'Library')]")));
-            actions.MoveToElement(LibrarySubItem).Click().Perform();
+            try
+            {
+                Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[contains(text(), 'Library')]")));
+            }
+            catch (NoSuchElementException)
+            {
+
+            }
+            actions.MoveToElement(LibrarySubItem);
+            actions.Click().Build().Perform();
+
             //LibrarySubItem.Click();
             return this;
         }

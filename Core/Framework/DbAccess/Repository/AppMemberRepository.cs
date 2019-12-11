@@ -20,11 +20,9 @@ namespace Laren.E2ETests.Core.Framework.DbAccess.Repository
         {
             Thread.Sleep(100);
             var query = $@"SELECT [LastName]
-                           FROM [AppMember] where FirstName = '{name}' ";
-            //AppMembersModel closingNumber = _conn.Connection.Query<AppMembersModel>(query).ToList().FirstOrDefault();
-            string closingNumber = _conn.Connection.Query<string>(query).ToList().FirstOrDefault();
-
-            return closingNumber;
+                           FROM [AppMember] where FirstName = '{name}' order by id desc";
+            AppMembersModel closingNumber = _conn.Connection.QueryFirstOrDefault<AppMembersModel>(query);
+            return closingNumber.LastName;
         }
 
         public void DeleteBuyerSeller(string companyId, string firstName, int buyerOrSeller)

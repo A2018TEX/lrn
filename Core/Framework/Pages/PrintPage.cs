@@ -14,7 +14,8 @@ namespace Laren.E2ETests.Core.Framework.Pages
   
         public bool PrintPageIsOpened()
         {
-            _driver.WaitUntilNewWindowIsOpened(2);
+            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(20));
+            wait.Until((d) => _driver.WindowHandles.Count == 2);
             var browserTabs = _driver.WindowHandles;
             _driver.SwitchTo().Window(browserTabs[1]);
             var printPageIsOpened = _driver.Url.Contains("blob");

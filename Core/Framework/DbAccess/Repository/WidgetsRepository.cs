@@ -14,12 +14,7 @@ namespace Laren.E2ETests.Core.Framework.DbAccess.Repository
         {
             _conn = connection;
         }
-        public int GetWidggetId(string WidgetName)
-        {
-            var query = $@"Select Id From Widgets Where Name = '{WidgetName}'";
-            var id = Convert.ToInt32(_conn.Connection.Query<string>(query).FirstOrDefault());
-            return id;
-        }
+
         public void DeleteWidgetsData(string email)
         {
             var query = $@"delete [WidgetsMembers] where WidgetId in(Select id from [Widgets] where [UpdatedBy_Id] in(SELECT Id FROM Members WHERE UserName ='{email}'))

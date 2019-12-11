@@ -5,7 +5,10 @@ using Laren.E2ETests.Core.Models;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Remote;
 using System;
+using System.Net;
+using System.Threading;
 
 namespace Laren.E2ETests.Tests
 {
@@ -79,11 +82,11 @@ namespace Laren.E2ETests.Tests
         {
             using (var scope = new TestScope<WorkWithDocumentsTEstsContext>(_configuration, BeforeEachTest, AfterEachTest))
             {
-                scope.HelperSet.UploadFileForTest(scope.Configuration.GetSection("DocxFileName4").Value);
+                scope.HelperSet.UploadFileForTest(scope.Configuration.GetSection("DocxFileName").Value);
                 var workFlownav = new WorkFlowPageNavigation(scope.Driver);
                 var library = new LibraryPage(scope.Driver);
                 var draftPage = new DraftPage(scope.Driver);
-                string fileName = scope.Configuration.GetSection("DocxFileName4").Value;
+                string fileName = scope.Configuration.GetSection("DocxFileName").Value;
                 string fileNameWithoutFormar = fileName.Replace(".docx", "");
                 string fileNameForRenaming = $"{new Random().Next(1000, 5000)}";
 
@@ -597,12 +600,12 @@ namespace Laren.E2ETests.Tests
         {
             using (var scope = new TestScope<WorkWithDocumentsTEstsContext>(_configuration, BeforeEachTest, AfterEachTest))
             {
-                scope.HelperSet.AddFileToDraft(scope.Configuration.GetSection("DocxFileName5").Value);
+                scope.HelperSet.AddFileToDraft(scope.Configuration.GetSection("DocxFileName3").Value);
 
                 var workFlownav = new WorkFlowPageNavigation(scope.Driver);
                 var draftPage = new DraftPage(scope.Driver);
                 var printPage = new PrintPage(scope.Driver);
-                string fileName = scope.Configuration.GetSection("DocxFileName5").Value;
+                string fileName = scope.Configuration.GetSection("DocxFileName3").Value;
                 string fileNameWithoutFormar = fileName.Replace(".docx", "");
 
                 workFlownav
@@ -616,51 +619,55 @@ namespace Laren.E2ETests.Tests
 
                 Assert.IsTrue(printPage.PrintPageIsOpened(), "Print Page is not opened");
 
-                //scope.Driver.Close();
             }
         }
 
-        //[Test]
-        //[Parallelizable(ParallelScope.Self)]
-        //[NUnit.Framework.Description(@"
-        //        Title: Edit and Export Documents in Drafts
-        //                1. Login to the website
-        //                2. Go to 'Workflow'
-        //                3. From drop-down list which begin with 'Property' choose Documents - Library
-        //                4. Choose .docx file
-        //                5. Press the button 'Preview'
-        //                6. Press the button 'Use'
-        //                7. Press the button 'Use'(We mightn’t rename file)
-        //                8. Open the page 'Draft'
-        //                9. Press the button 'Vertical 3 points' near name file
-        //                10. Choose 'Edit'
-        //                11. Press the button 'Export'
-        //            ER: The file must be load on the pc")]
-        //public void EditAndExportDocumentOnDraftPage()
-        //{
-        //    using (var scope = new TestScope<WorkWithDocumentsTEstsContext>(_configuration, BeforeEachTest, AfterEachTest))
-        //    {
-        //        var fileName1 = scope.HelperSet.AddFileToDraft(scope.Configuration.GetSection("DocxFileName2").Value);
+        [Test]
+        [Parallelizable(ParallelScope.Self)]
+        [NUnit.Framework.Description(@"
+                Title: Edit and Export Documents in Drafts
+                        1. Login to the website
+                        2. Go to 'Workflow'
+                        3. From drop-down list which begin with 'Property' choose Documents - Library
+                        4. Choose .docx file
+                        5. Press the button 'Preview'
+                        6. Press the button 'Use'
+                        7. Press the button 'Use'(We mightn’t rename file)
+                        8. Open the page 'Draft'
+                        9. Press the button 'Vertical 3 points' near name file
+                        10. Choose 'Edit'
+                        11. Press the button 'Export'
+                    ER: The file must be load on the pc")]
+        public void EditAndExportDocumentOnDraftPage()
+        {
+            using (var scope = new TestScope<WorkWithDocumentsTEstsContext>(_configuration, BeforeEachTest, AfterEachTest))
+            {
+                var fileName1 = scope.HelperSet.AddFileToDraft(scope.Configuration.GetSection("DocxFileName2").Value);
 
-        //        var workFlownav = new WorkFlowPageNavigation(scope.Driver);
-        //        var draftPage = new DraftPage(scope.Driver);
-        //        var printPage = new PrintPage(scope.Driver);
-        //        string fileName = scope.Configuration.GetSection("DocxFileName2").Value;
-        //        string fileNameWithoutFormar = fileName.Replace(".docx", "");
-        //        var fileName2 = fileName1.Replace("/", "_");
-        //        var fileName3 = fileName2.Replace(":", "_");
+                var sessionIdProperty = typeof(RemoteWebDriver).GetProperty("SessionId");
+                var sessionId = sessionIdProperty.GetValue(scope.Driver);
 
-        //        workFlownav
-        //            .GoToAppropriateClosingFile()
-        //            .GoToDocumentsDraftPage();
+                var workFlownav = new WorkFlowPageNavigation(scope.Driver);
+                var draftPage = new DraftPage(scope.Driver);
+                var printPage = new PrintPage(scope.Driver);
 
-        //        draftPage
-        //            .ClicOnEllipsisVertical(fileNameWithoutFormar)
-        //            .ClickOnEditItem()
-        //            .ClickOnExportButtonButtonOnActionRow();
+                workFlownav
+                    .GoToAppropriateClosingFile()
+                    .GoToDocumentsDraftPage();
 
-        //        Assert.IsTrue(scope.HelperSet.FindExportedFile(fileName3), "File is not exported");
-        //    }
-        //}
+                draftPage
+                    .ClicOnEllipsisVertical(fileName1.Replace(".docx", ""))
+                    .ClickOnEditItem()
+                    .ClickOnExportButtonButtonOnActionRow();
+
+                Thread.Sleep(1000);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"http://195.26.92.83:4444/download/{sessionId}/{fileName1}"); /*/{fileName1}*/
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                var status = response.StatusCode;
+
+                Assert.AreEqual("OK", $"{status}", "File is downloaded");
+
+            }
+        }
     }
 }

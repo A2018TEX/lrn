@@ -15,7 +15,7 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
         public IWebElement SelectVendorTypeDropDown => _driver.FindElement(By.XPath("//input[@placeholder='Select Vendor Type']"));
         public IWebElement LenderType => _driver.FindElement(By.XPath("//*[contains(text(),'Lender')]"));
         public IWebElement VendorNameDropdown => _driver.FindElement(By.XPath("//*[@placeholder='Select Vendor Name']"));
-        public IWebElement FirstVendorNameInList => _driver.FindElement(By.XPath("//a[@class='dropdown-item']"));
+        public IWebElement FirstVendorNameInList => _driver.FindElement(By.XPath("//div[@class='searchList ng-star-inserted']//a[@class='dropdown-item']"));
         public IWebElement UnderwriterType => _driver.FindElement(By.XPath("//*[contains(text(),'Underwriter')]"));
 
         public VendorsPage ClickAddVendorButton()
@@ -58,12 +58,12 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
             Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//span[@class='spinner']")));
             try
             {
-                Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//a[@class='dropdown-item']")));
+                Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//div[@class='searchList ng-star-inserted']//a[@class='dropdown-item']")));
                 FirstVendorNameInList.Click();
             }
             catch (NoSuchElementException)
             {
-                Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//a[@class='dropdown-item']")));
+                Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//div[@class='searchList ng-star-inserted']//a[@class='dropdown-item']")));
                 FirstVendorNameInList.Click();
             }
             return this;

@@ -67,7 +67,7 @@ namespace Laren.E2ETests.Core.Framework.DbAccess.Repository
 
         public void InsertClosingFileWorkflowInstance(string workflowTemplateId, int companyId, int closingFileId, int userId)
         {
-            var query = $@" Insert into ClosingFileWorkflowInstances ( WorkflowTemplateId, Name, CompanyId, ClosingFileId, CreatedBy_Id, DateCreated, DateUpdated, UpdatedBy_Id)
+            var query = $@" Insert into ClosingFileWorkflowInstances (WorkflowTemplateId, Name, CompanyId, ClosingFileId, CreatedBy_Id, DateCreated, DateUpdated, UpdatedBy_Id)
                           values ({workflowTemplateId}, 'Test', {companyId}, {closingFileId}, {userId}, SYSDATETIMEOFFSET(), SYSDATETIMEOFFSET(), {userId})";
             var insert = _conn.Connection.QuerySingleOrDefault<string>(query);
         }
@@ -143,7 +143,7 @@ namespace Laren.E2ETests.Core.Framework.DbAccess.Repository
         }
         public void InsertWorkflowTemplate(int companyId, int memberId, string workflowTemplateName)
         {
-            var query = $@" Insert Into WorkflowTemplates ( Name, CompanyId, CreatedBy_Id, DateCreated, DateUpdated, UpdatedBy_Id)
+            var query = $@" Insert Into WorkflowTemplates (Name, CompanyId, CreatedBy_Id, DateCreated, DateUpdated, UpdatedBy_Id)
                             values ('{workflowTemplateName}', {companyId}, {memberId}, SYSDATETIMEOFFSET(), SYSDATETIMEOFFSET(),{memberId})";
 
             var querySql = $@"INSERT INTO WorkflowTemplates (Name, CompanyId, CreatedBy_Id, DateCreated, DateUpdated, UpdatedBy_Id) 
@@ -154,7 +154,7 @@ namespace Laren.E2ETests.Core.Framework.DbAccess.Repository
         }
         public string GetWorkflowTemplateId(string fileNumber)
         {
-            var query = $@"Select Max(Id) From WorkflowTemplates Where Name = '{fileNumber}'";
+            var query = $@"Select Id From WorkflowTemplates Where Name = '{fileNumber}'";
             var id = _conn.Connection.Query<string>(query).ToList().FirstOrDefault();
             return id;
         }

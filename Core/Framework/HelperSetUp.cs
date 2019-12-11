@@ -182,14 +182,14 @@ namespace Laren.E2ETests.Core.Framework
             var documentTemplatesRepository = new DocumentTemplatesRepository(_dbConn);
             var documentTemplateId = documentTemplatesRepository.GetDocumentTemplateId(CompanyId, LocationId);
             var documentTemplateFileGuid = documentTemplatesRepository.GetDocumentTemplateFileGuid(CompanyId, LocationId);
-            var documentTemplateFileName = documentTemplatesRepository.GetDocumentTemplateFileName(CompanyId, LocationId) + DateTime.Now.ToString();
+            var documentTemplateFileName = documentTemplatesRepository.GetDocumentTemplateFileName(CompanyId, LocationId) + DateTime.Now.ToString("MM_dd_yyyy hh_mm_ss tt");
             closingFileDocumentsRepository.InsertFileToDraft(ClosingFileId, documentTemplateId, CompanyId, LocationId, documentTemplateFileGuid, documentTemplateFileName);
             return documentTemplateFileName;
         }
 
         public bool FindExportedFile(string fileName)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "\\";
+            string path = Directory.GetCurrentDirectory();
             if (Directory.Exists(path)) //we check if the directory or folder exists
             {
                 bool result = CheckFile(path, fileName); // boolean result true or false is stored after checking the zip file name
@@ -207,10 +207,10 @@ namespace Laren.E2ETests.Core.Framework
 
         public bool CheckFile(string path, string name) // the name of the zip file which is obtained, is passed in this method
         {
-            var currentFile = $@"{path}" + name; // the zip filename is stored in a variable
+            var currentFile = $"{path}" + name; // the zip filename is stored in a variable
 
             bool fileExist = false;
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i <= 5; i++)
             {
                 if (File.Exists(currentFile)) //helps to check if the zip file is present
                 {
@@ -224,16 +224,6 @@ namespace Laren.E2ETests.Core.Framework
                 }
             }
             return fileExist;
-        }
-
-        public void DisplayWidget(string widgetName)
-        {
-            HelperMethodAddClosingFileAddressAndLocation();
-            var widgetsRepository = new WidgetsRepository(_dbConn);
-            var widgetsMembersRepository = new WidgetsMembersRepository(_dbConn);
-            int widgetId = widgetsRepository.GetWidggetId(widgetName);
-            widgetsMembersRepository.InsertWidgetsMembers(widgetId, CompanyId, LocationId, UserId);
-
         }
     }
 }

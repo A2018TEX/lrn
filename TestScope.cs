@@ -1,5 +1,6 @@
 ﻿using Laren.E2ETests.Core.Framework;
 using Laren.E2ETests.Core.Framework.DbAccess;
+using Lucene.Net.Support;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -18,7 +19,7 @@ namespace Laren.E2ETests
 {
     public class TestScope<T> : IDisposable where T : class
     {
-        private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(3);
+        private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(2);
         private Action<TestScope<T>> _beforeTest;
         private Action<TestScope<T>> _afterTest;
 
@@ -31,6 +32,8 @@ namespace Laren.E2ETests
         public int UserId { get; set; }
         public int CompanyId { get; set; }
         public T Context { get; set; }
+
+        [Obsolete]
         public IWebDriver Driver
         {
             get
@@ -44,25 +47,41 @@ namespace Laren.E2ETests
                     case "chrome":
 
 #if !DEBUG
-                        var capabilities = new DesiredCapabilities();
-                        capabilities.SetCapability("browserName", "chrome");
-                        _driver = new RemoteWebDriver(
-                          new Uri(Configuration.GetSection("HubUrl").Value), capabilities);
+                         var capabilities = new DesiredCapabilities("chrome", "78.0", new Platform(PlatformType.Any));
+                        capabilities.SetCapability("enableVNC", true);
+                        capabilities.SetCapability("screenResolution", "1920x1080x24");
+                        _driver = new RemoteWebDriver(new Uri(Configuration.GetSection("HubUrl").Value), capabilities, TimeSpan.FromSeconds(80));
+                     
+
+                        var allowFile = _driver as IAllowsFileDetection;
+                        if (allowFile != null)
+                        {
+                            allowFile.FileDetector = new LocalFileDetector();
+                        }
+                        return _driver;
 #endif
 #if DEBUG
+
                         var chromeOptions = new ChromeOptions();
-                        string path = AppDomain.CurrentDomain.BaseDirectory;
-                        chromeOptions.AddArguments(new List<string>() {
-                            "--no-sandbox",/*"--headless", */"--window-size=1920x1080"});
-                        chromeOptions.AddUserProfilePreference("download.default_directory", $@"{path}");
-                        chromeOptions.AddUserProfilePreference("intl.accept_languages", "nl");
+                        var path = Directory.GetCurrentDirectory();
+
+                        chromeOptions.AddUserProfilePreference("download.default_directory", path);
+                        //chromeOptions.AddUserProfilePreference("intl.accept_languages", "nl");
                         chromeOptions.AddUserProfilePreference("disable-popup-blocking", "true");
 
-                        //_driver = new ChromeDriver(Directory.GetCurrentDirectory(), chromeOptions);
-                        _driver = new RemoteWebDriver(
-                          new Uri(Configuration.GetSection("HubUrl").Value), chromeOptions);
+                        //var capabilities = new DesiredCapabilities("chrome", "78.0", new Platform(PlatformType.Any));
 
-                        IAllowsFileDetection allowFile = _driver as IAllowsFileDetection;
+                        //capabilities.SetCapability(ChromeOptions.Capability, chromeOptions.ToCapabilities());
+                        //capabilities.SetCapability("enableVNC", true);
+                        //capabilities.SetCapability("screenResolution", "1920x1080x24");
+                        //capabilities.SetCapability("sessionTimeout", "2m");
+                        //capabilities.SetCapability(ChromeOptions.Capability, chromeOptions);
+                        chromeOptions.AddAdditionalCapability("enableVNC", true, true);
+
+                        _driver = new RemoteWebDriver(new Uri(Configuration.GetSection("HubUrl").Value), chromeOptions/*, TimeSpan.FromSeconds(80)*/);
+
+                        //_driver = new ChromeDriver(Directory.GetCurrentDirectory());
+                        var allowFile = _driver as IAllowsFileDetection;
                         if (allowFile != null)
                         {
                             allowFile.FileDetector = new LocalFileDetector();
@@ -86,7 +105,6 @@ namespace Laren.E2ETests
             Action<TestScope<T>> afterEachTest = null,
             T context = null)
         {
-            Thread.Sleep(1000);
             _semaphoreSlim.Wait();
             Context = context is null ? Activator.CreateInstance(typeof(T)) as T : context;
             Configuration = configuration;
@@ -133,6 +151,9 @@ namespace Laren.E2ETests
         public void Dispose()
         {
             AfterTest();
+
         }
     }
 }
+
+

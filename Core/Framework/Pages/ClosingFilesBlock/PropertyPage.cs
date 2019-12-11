@@ -23,31 +23,20 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
         }
 
         public PropertyPage TypeAddress1Field(string address)
-        {
+        {            
             Address1Field.Clear();
             Address1Field.SendKeys(address);
-            var adress = By.XPath("//span[contains(text(),'Hillsboro')]/ancestor::div[@class='pac-item']");
-            ClickOnAddress(adress);
+            //Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='pac-container pac-logo']//span[contains(text(),'Okeechobee, FL, USA')]")));
+            Actions act = new Actions(_driver);
+            act.MoveToElement(_driver.FindElement(By.XPath("//div[@class='pac-container pac-logo']//span[contains(text(),'Okeechobee, FL, USA')]")));
+            act.Click();
+            act.Perform();
             Thread.Sleep(1000);
             return this;
-        }
-        private void ClickOnAddress(By adress)
-        {
-            try
-            {
-                adress.WaitAndClickUsingActions(_driver);
-            }
-            catch
-            {
-                By.XPath("//input[@id='addressValidation']").WaitAndClickUsingActions(_driver);//
-                adress.WaitAndClickUsingActions(_driver);
-            }
         }
         public PropertyPage ClickLookupButton()
         {
             LookupButton.Click();
-            //Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='toast-bottom-right toast-container']")));
-            Thread.Sleep(2000);
             return this;
         }
 

@@ -9,11 +9,14 @@
     ".NETCoreApp,Version=v2.1/linux-x64": {
       "Laren.E2ETests/1.0.0": {
         "dependencies": {
+          "BrowserStack": "2.0.1",
+          "BrowserStackLocal": "1.4.0",
           "Dapper": "2.0.4",
           "DocumentFormat.OpenXml": "2.9.1",
           "DotNetSeleniumExtras.PageObjects": "3.11.0",
           "DotNetSeleniumExtras.WaitHelpers": "3.11.0",
           "Firefox": "3.6.6",
+          "Lucene.Net": "3.0.3",
           "MSTest.TestFramework": "2.0.0",
           "Microsoft.AspNet.Mvc": "5.2.7",
           "Microsoft.Extensions.Configuration": "3.0.0",
@@ -46,6 +49,28 @@
         },
         "runtime": {
           "Laren.E2ETests.dll": {}
+        }
+      },
+      "BrowserStack/2.0.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.3"
+        },
+        "runtime": {
+          "lib/net35/BrowserStack.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
+          }
+        }
+      },
+      "BrowserStackLocal/1.4.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.3"
+        },
+        "runtime": {
+          "lib/net20/BrowserStackLocal.dll": {
+            "assemblyVersion": "1.4.0.0",
+            "fileVersion": "1.4.0.0"
+          }
         }
       },
       "Dapper/2.0.4": {
@@ -94,6 +119,17 @@
         }
       },
       "Firefox/3.6.6": {},
+      "Lucene.Net/3.0.3": {
+        "dependencies": {
+          "SharpZipLib": "0.86.0"
+        },
+        "runtime": {
+          "lib/NET40/Lucene.Net.dll": {
+            "assemblyVersion": "3.0.3.0",
+            "fileVersion": "3.0.3.0"
+          }
+        }
+      },
       "Microsoft.AspNet.Mvc/5.2.7": {
         "dependencies": {
           "Microsoft.AspNet.Razor": "3.2.7",
@@ -901,6 +937,14 @@
         }
       },
       "Selenium.WebDriver.ChromeDriver/78.0.3904.10500": {},
+      "SharpZipLib/0.86.0": {
+        "runtime": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "0.86.0.518",
+            "fileVersion": "0.86.0.518"
+          }
+        }
+      },
       "System.AppContext/4.1.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -1576,6 +1620,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "BrowserStack/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BgRMCmtEL1p/sRoOhZ4nNtAE3DyE4fU24+Q5cnWHIx4R6qpaHElQaXCLxRXw+KLOeUOdtbsfP27iDpH1kALwSA==",
+      "path": "browserstack/2.0.1",
+      "hashPath": "browserstack.2.0.1.nupkg.sha512"
+    },
+    "BrowserStackLocal/1.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eDVrDt7DQHim6d/2CNuanylHzokQgs2HhKzLcpsqF+VaKrA8YyznY88ymU20f6Silz8mZpcwRLVJuXBzETvyhA==",
+      "path": "browserstacklocal/1.4.0",
+      "hashPath": "browserstacklocal.1.4.0.nupkg.sha512"
+    },
     "Dapper/2.0.4": {
       "type": "package",
       "serviceable": true,
@@ -1610,6 +1668,13 @@
       "sha512": "sha512-nFst3tW1aa10pA5aT0mg/R1QfEqJof4AvzAR7Hza0wWMhdIHwENlfbmYFofIq3+qu7RiQKPXyc5yvMSUCPUVhg==",
       "path": "firefox/3.6.6",
       "hashPath": "firefox.3.6.6.nupkg.sha512"
+    },
+    "Lucene.Net/3.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A/70q4eDcuuafQeDB9eaiDP9FQG7X29T4VIYRphS7Wk8kAM9gNcfVqYyd0H8BJ1BTpA5C1ORm9RzFn4BiNavrw==",
+      "path": "lucene.net/3.0.3",
+      "hashPath": "lucene.net.3.0.3.nupkg.sha512"
     },
     "Microsoft.AspNet.Mvc/5.2.7": {
       "type": "package",
@@ -1967,6 +2032,13 @@
       "sha512": "sha512-1olFsJvAIkxb21CV9z2TVQFITOo4PkVKoV+xvEsyLsGbBn8HWm57DEn/124icDgh85ANMZgglg0GXDEsGhgckg==",
       "path": "selenium.webdriver.chromedriver/78.0.3904.10500",
       "hashPath": "selenium.webdriver.chromedriver.78.0.3904.10500.nupkg.sha512"
+    },
+    "SharpZipLib/0.86.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5DbS1SlKLMi+WG00Cm0ueYf2oyXJrowETQk8nx96rmdjTuHsA3laPykGV7Sxi0R5Xxfx0Kh/EfacAZ1f6M7y/g==",
+      "path": "sharpziplib/0.86.0",
+      "hashPath": "sharpziplib.0.86.0.nupkg.sha512"
     },
     "System.AppContext/4.1.0": {
       "type": "package",

@@ -69,7 +69,7 @@ namespace Laren.E2ETests.Tests
 
         [Test]
         [Parallelizable(ParallelScope.Self)]
-        //[Ignore("Need to change login. remove WorkFlow Data")]
+        [Ignore("Need to change logic. remove WorkFlow Data")]
         [NUnit.Framework.Description("")]
         public void AddWorkflow()
         {
@@ -558,7 +558,7 @@ namespace Laren.E2ETests.Tests
 
         [Test]
         [Parallelizable(ParallelScope.Self)]
-        //[Ignore("Need to fix Assert")]
+        [Ignore("Need to fix Assert")]
         [NUnit.Framework.Description(@"
                 DataRow# 2
                 Title: Add Details Closing File. Add Property from Sections menu.
@@ -582,7 +582,7 @@ namespace Laren.E2ETests.Tests
         {
             using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
             {
-                scope.HelperSet.DisplayWidget("Property Maps");
+                //scope.HelperSet.DisplayWidget("Property Maps");
 
                 var workFlownav = new WorkFlowPageNavigation(scope.Driver);
                 var property = new PropertyPage(scope.Driver);

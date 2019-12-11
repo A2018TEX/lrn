@@ -50,11 +50,12 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
 
             public SellersPage SelectExemptField()
             {
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
                 SelectElement sl = new SelectElement(ExemptField);
-                sl.SelectByIndex(2);
-                Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='spinner spinner-sm']")));
-                Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//div[@class='spinner spinner-sm']")));
+                sl.SelectByIndex(2); 
+                Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='spinner']")));
+                //Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='spinner spinner-sm']")));
+                Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//span[@class='spinner']")));
                 return this;
             }
             public SellersPage SelectMaritalStatus()

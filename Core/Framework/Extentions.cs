@@ -26,7 +26,7 @@ namespace Laren.E2ETests.Core.Framework
         }
         public static void WaitElementIsVisible(this By locator, IWebDriver driver)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
         }
         public static void FindAndClick(this By locator, IWebDriver driver)
@@ -36,31 +36,10 @@ namespace Laren.E2ETests.Core.Framework
         }
         public static void WaitAndClickUsingIJavaScriptExecutor(this By locator, IWebDriver driver)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
             IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
             ex.ExecuteScript("arguments[0].click();", element);
-        }
-        public static void WaitUntilNewWindowIsOpened(this IWebDriver driver, int expectedNumberOfWindows, int maxRetryCount = 150)
-        {
-            int returnValue;
-            bool boolReturnValue;
-            for (var i = 0; i < maxRetryCount; Thread.Sleep(100), i++)
-            {
-                returnValue = driver.WindowHandles.Count;
-                boolReturnValue = (returnValue == expectedNumberOfWindows ? true : false);
-                if (boolReturnValue)
-                {
-                    return;
-                }
-            }
-            //try one last time to check for window
-            returnValue = driver.WindowHandles.Count;
-            boolReturnValue = (returnValue == expectedNumberOfWindows ? true : false);
-            if (!boolReturnValue)
-            {
-                throw new ApplicationException("New window did not open.");
-            }
-        }
+        }      
     }
 }

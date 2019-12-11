@@ -56,7 +56,7 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
         public UploadsPage ClickOnEllipsisVertical(string fileNameWithoutFormar)
         {
 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             var actions = new Actions(_driver);
             var document = _driver.FindElement(DocumentLocator(fileNameWithoutFormar));
             DocumentLocator(fileNameWithoutFormar).WaitElementIsVisible(_driver);

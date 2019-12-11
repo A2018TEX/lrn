@@ -24,27 +24,25 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
 
         public LibraryPage ClickOnDocxFile(string fileName)
         {
-            //Thread.Sleep(10000);
+            Thread.Sleep(1000);
             DocxFileLocator(fileName).WaitAndClick(_driver);
             return this;
         }
 
         public LibraryPage ClickOnUseButtonOnDocumentMenu(string documentName)
         {
-            Thread.Sleep(10000);
             DocumentMenuButtonLocator(documentName).WaitAndClickUsingActions(_driver);
             UseButtoInDocumentMenunLocator.WaitAndClickUsingActions(_driver);
             return this;
         }
         public LibraryPage ClickOnUseButtonOnPopUp()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             var actions = new Actions(_driver);
             Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@class='btn btn-laren']/../button[contains(text(), 'Use')]")));
             IJavaScriptExecutor ex = (IJavaScriptExecutor)_driver;
             ex.ExecuteScript("arguments[0].click();", UseButtonOnPopUp);
-            //WaitMessage();
-            Thread.Sleep(3000);
+            WaitMessage();
             return this;
         }
         public LibraryPage WaitMessage()
@@ -63,7 +61,6 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
             var RenameField = _driver.FindElement(RenameFieldOnPopUpLocator);
             RenameField.Clear();
             RenameField.SendKeys(fileNameForRenaming);
-            Thread.Sleep(2000);
             return this;
         }
     }

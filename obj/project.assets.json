@@ -2,6 +2,30 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "BrowserStack/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "4.5.11"
+        },
+        "compile": {
+          "lib/net35/BrowserStack.dll": {}
+        },
+        "runtime": {
+          "lib/net35/BrowserStack.dll": {}
+        }
+      },
+      "BrowserStackLocal/1.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "8.0.3"
+        },
+        "compile": {
+          "lib/net20/BrowserStackLocal.dll": {}
+        },
+        "runtime": {
+          "lib/net20/BrowserStackLocal.dll": {}
+        }
+      },
       "Dapper/2.0.4": {
         "type": "package",
         "dependencies": {
@@ -54,6 +78,18 @@
       },
       "Firefox/3.6.6": {
         "type": "package"
+      },
+      "Lucene.Net/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "SharpZipLib": "0.86.0"
+        },
+        "compile": {
+          "lib/NET40/Lucene.Net.dll": {}
+        },
+        "runtime": {
+          "lib/NET40/Lucene.Net.dll": {}
+        }
       },
       "Microsoft.AspNet.Mvc/5.2.7": {
         "type": "package",
@@ -1155,6 +1191,15 @@
           "build/Selenium.WebDriver.ChromeDriver.targets": {}
         }
       },
+      "SharpZipLib/0.86.0": {
+        "type": "package",
+        "compile": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {}
+        },
+        "runtime": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {}
+        }
+      },
       "System.AppContext/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -2250,6 +2295,30 @@
       }
     },
     ".NETCoreApp,Version=v2.1/linux-x64": {
+      "BrowserStack/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "4.5.11"
+        },
+        "compile": {
+          "lib/net35/BrowserStack.dll": {}
+        },
+        "runtime": {
+          "lib/net35/BrowserStack.dll": {}
+        }
+      },
+      "BrowserStackLocal/1.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "8.0.3"
+        },
+        "compile": {
+          "lib/net20/BrowserStackLocal.dll": {}
+        },
+        "runtime": {
+          "lib/net20/BrowserStackLocal.dll": {}
+        }
+      },
       "Dapper/2.0.4": {
         "type": "package",
         "dependencies": {
@@ -2302,6 +2371,18 @@
       },
       "Firefox/3.6.6": {
         "type": "package"
+      },
+      "Lucene.Net/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "SharpZipLib": "0.86.0"
+        },
+        "compile": {
+          "lib/NET40/Lucene.Net.dll": {}
+        },
+        "runtime": {
+          "lib/NET40/Lucene.Net.dll": {}
+        }
       },
       "Microsoft.AspNet.Mvc/5.2.7": {
         "type": "package",
@@ -3582,6 +3663,15 @@
           "build/Selenium.WebDriver.ChromeDriver.targets": {}
         }
       },
+      "SharpZipLib/0.86.0": {
+        "type": "package",
+        "compile": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {}
+        },
+        "runtime": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {}
+        }
+      },
       "System.AppContext/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -4612,6 +4702,30 @@
     }
   },
   "libraries": {
+    "BrowserStack/2.0.1": {
+      "sha512": "BgRMCmtEL1p/sRoOhZ4nNtAE3DyE4fU24+Q5cnWHIx4R6qpaHElQaXCLxRXw+KLOeUOdtbsfP27iDpH1kALwSA==",
+      "type": "package",
+      "path": "browserstack/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "browserstack.2.0.1.nupkg.sha512",
+        "browserstack.nuspec",
+        "lib/net35/BrowserStack.dll"
+      ]
+    },
+    "BrowserStackLocal/1.4.0": {
+      "sha512": "eDVrDt7DQHim6d/2CNuanylHzokQgs2HhKzLcpsqF+VaKrA8YyznY88ymU20f6Silz8mZpcwRLVJuXBzETvyhA==",
+      "type": "package",
+      "path": "browserstacklocal/1.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "browserstacklocal.1.4.0.nupkg.sha512",
+        "browserstacklocal.nuspec",
+        "lib/net20/BrowserStackLocal.dll"
+      ]
+    },
     "Dapper/2.0.4": {
       "sha512": "DrNPDqK3nR4RpwAPX2R0R34YhlT+k5Fbw7UnqxQ2aH+wSWvEIj+fCDXB8RJWgw6fGFZLavq7nuJ6J/eAqSrIpw==",
       "type": "package",
@@ -4899,6 +5013,23 @@
         "tools/Host/appstop.exe",
         "tools/Manifest/firefox.ico",
         "tools/Manifest/manifest.u3i"
+      ]
+    },
+    "Lucene.Net/3.0.3": {
+      "sha512": "A/70q4eDcuuafQeDB9eaiDP9FQG7X29T4VIYRphS7Wk8kAM9gNcfVqYyd0H8BJ1BTpA5C1ORm9RzFn4BiNavrw==",
+      "type": "package",
+      "path": "lucene.net/3.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/NET35/Lucene.Net.XML",
+        "lib/NET35/Lucene.Net.dll",
+        "lib/NET35/Lucene.Net.pdb",
+        "lib/NET40/Lucene.Net.XML",
+        "lib/NET40/Lucene.Net.dll",
+        "lib/NET40/Lucene.Net.pdb",
+        "lucene.net.3.0.3.nupkg.sha512",
+        "lucene.net.nuspec"
       ]
     },
     "Microsoft.AspNet.Mvc/5.2.7": {
@@ -7053,6 +7184,21 @@
         "driver/win32/chromedriver.exe",
         "selenium.webdriver.chromedriver.78.0.3904.10500.nupkg.sha512",
         "selenium.webdriver.chromedriver.nuspec"
+      ]
+    },
+    "SharpZipLib/0.86.0": {
+      "sha512": "5DbS1SlKLMi+WG00Cm0ueYf2oyXJrowETQk8nx96rmdjTuHsA3laPykGV7Sxi0R5Xxfx0Kh/EfacAZ1f6M7y/g==",
+      "type": "package",
+      "path": "sharpziplib/0.86.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/11/ICSharpCode.SharpZipLib.dll",
+        "lib/20/ICSharpCode.SharpZipLib.dll",
+        "lib/SL3/SharpZipLib.Silverlight3.dll",
+        "lib/SL4/SharpZipLib.Silverlight4.dll",
+        "sharpziplib.0.86.0.nupkg.sha512",
+        "sharpziplib.nuspec"
       ]
     },
     "System.AppContext/4.1.0": {
@@ -10700,11 +10846,14 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "BrowserStack >= 2.0.1",
+      "BrowserStackLocal >= 1.4.0",
       "Dapper >= 2.0.4",
       "DocumentFormat.OpenXml >= 2.9.1",
       "DotNetSeleniumExtras.PageObjects >= 3.11.0",
       "DotNetSeleniumExtras.WaitHelpers >= 3.11.0",
       "Firefox >= 3.6.6",
+      "Lucene.Net >= 3.0.3",
       "MSTest.TestFramework >= 2.0.0",
       "Microsoft.AspNet.Mvc >= 5.2.7",
       "Microsoft.Extensions.Configuration >= 3.0.0",
@@ -10745,11 +10894,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\Laren.E2ETests.csproj",
+      "projectUniqueName": "C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Laren.E2ETests.csproj",
       "projectName": "Laren.E2ETests",
-      "projectPath": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\Laren.E2ETests.csproj",
+      "projectPath": "C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\Laren.E2ETests.csproj",
       "packagesPath": "C:\\Users\\Anuitex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anuitex\\Desktop\\larene2etests\\obj\\",
+      "outputPath": "C:\\Users\\Anuitex\\Desktop\\regression-tests\\Laren\\E2ETests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -10781,6 +10930,14 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "BrowserStack": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "BrowserStackLocal": {
+            "target": "Package",
+            "version": "[1.4.0, )"
+          },
           "Dapper": {
             "target": "Package",
             "version": "[2.0.4, )"
@@ -10800,6 +10957,10 @@
           "Firefox": {
             "target": "Package",
             "version": "[3.6.6, )"
+          },
+          "Lucene.Net": {
+            "target": "Package",
+            "version": "[3.0.3, )"
           },
           "MSTest.TestFramework": {
             "target": "Package",
@@ -10948,6 +11109,36 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
+      "message": "Package 'BrowserStack 2.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "BrowserStack",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BrowserStackLocal 1.4.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "BrowserStackLocal",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Lucene.Net 3.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Lucene.Net",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.Mvc 5.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Mvc",
       "targetGraphs": [
@@ -10980,6 +11171,16 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Web.Infrastructure",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'SharpZipLib 0.86.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "SharpZipLib",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
       ]

@@ -60,7 +60,6 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
 
         public DraftPage ClickOnEditItem()
         {
-            Thread.Sleep(5000);
             var actions = new Actions(_driver);
             EditItemLocator.WaitAndClickUsingIJavaScriptExecutor(_driver);
             actions.MoveByOffset(200,200);
@@ -165,8 +164,6 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
             _driver.SwitchTo().DefaultContent();
 
             PrintButtonOnActionRowLocator.WaitAndClickUsingActions(_driver);
-            //PrintButtonOnActionRowLocator.WaitAndClickUsingIJavaScriptExecutor(_driver);
-
             return this;
         }
 
@@ -174,14 +171,9 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
         {
             _driver.SwitchTo().Frame("myTextControlContainer_txframe");
             Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("mainCanvas")));
-
-            //Thread.Sleep(1000);
             _driver.SwitchTo().DefaultContent();
-
-
-            //var exportButton = driver.FindElements(ExportButtonOnActionRowLocator);
-
             ExportButtonOnActionRowLocator.WaitAndClickUsingActions(_driver);
+            Thread.Sleep(1000);
             return this;
         }
     }
