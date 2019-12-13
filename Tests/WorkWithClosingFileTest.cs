@@ -31,7 +31,7 @@ namespace Laren.E2ETests.Tests
 
 
         [Test]
-        [Ignore("Need to change logic. remove WorkFlow Data")]
+        //[Ignore("Need to change logic. remove WorkFlow Data")]
         [NUnit.Framework.Description("")]
         [Obsolete]
         public void AddWorkflow()
@@ -230,8 +230,6 @@ namespace Laren.E2ETests.Tests
         [Test]  
         public void AddBuyerToClosingFile()
         {
-           
-            {
                 var workFlowPage = new WorkFlowPageNavigation(Driver);
                 var buyerPage = new BuyerPage(Driver);
                 var appMembersRep = new AppMemberRepository(DbConn);
@@ -255,7 +253,7 @@ namespace Laren.E2ETests.Tests
                     .SelectTenancy(Configuration.GetSection("BuyerFirstName").Value);
 
                 Assert.AreEqual(lastName, appMembersRep.GetSellerLastName(firstName), "Buyer Was created");
-            }
+            
         }
 
         [Test]        

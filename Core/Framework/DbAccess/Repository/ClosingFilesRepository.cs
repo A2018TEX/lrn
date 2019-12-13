@@ -141,46 +141,48 @@ namespace Laren.E2ETests.Core.Framework.DbAccess.Repository
                                 (SELECT Id FROM ClosingFileWorkflowItems WHERE ClosingFileWorkflowSectionId IN 
                                 (SELECT Id FROM ClosingFileWorkflowSections WHERE ClosingFileWorkflowInstanceId  IN 
                                 (Select Id FROM ClosingFileWorkflowInstances WHERE ClosingFileId IN 
-                                (SELECT Id FROM ClosingFiles WHERE ClosingNumber = '{closingNumber}'))));
+                                (SELECT Id FROM ClosingFiles WHERE ClosingNumber  = '{closingNumber}'))));
                             DELETE FROM ClosingFileWorkflowItemComments 
                                  WHERE ClosingFileWorkflowItemId IN 
                                  (SELECT Id FROM ClosingFileWorkflowItems WHERE ClosingFileWorkflowSectionId IN 
                                  (SELECT Id FROM ClosingFileWorkflowSections WHERE ClosingFileWorkflowInstanceId  IN 
                                  (Select Id FROM ClosingFileWorkflowInstances WHERE ClosingFileId IN 
-                                 (SELECT Id FROM ClosingFiles WHERE ClosingNumber = '{closingNumber}'))));
+                                 (SELECT Id FROM ClosingFiles WHERE ClosingNumber  = '{closingNumber}'))));
                             DELETE FROM ClosingFileWorkflowItems 
                                   WHERE ClosingFileWorkflowSectionId IN 
                                   (SELECT Id FROM ClosingFileWorkflowSections WHERE ClosingFileWorkflowInstanceId  IN 
                                   (Select Id FROM ClosingFileWorkflowInstances WHERE ClosingFileId IN 
-                                  (SELECT Id FROM ClosingFiles WHERE ClosingNumber = '{closingNumber}')));
+                                  (SELECT Id FROM ClosingFiles WHERE ClosingNumber  = '{closingNumber}')));
                             DELETE FROM ClosingFileWorkflowSections 
                                 WHERE ClosingFileWorkflowInstanceId  IN 
                                 (Select Id FROM ClosingFileWorkflowInstances WHERE ClosingFileId IN 
-                                (SELECT Id FROM ClosingFiles WHERE ClosingNumber = '{closingNumber}'));
+                                (SELECT Id FROM ClosingFiles WHERE ClosingNumber  = '{closingNumber}'));
                             DELETE FROM ClosingFileWorkflowInstances 
                                 WHERE ClosingFileId IN 
-                                (SELECT Id FROM ClosingFiles WHERE ClosingNumber = '{closingNumber}');
+                                (SELECT Id FROM ClosingFiles WHERE ClosingNumber  = '{closingNumber}');
                             
-                            Delete From [CdAirs] Where ClosingDisclosureId In(Select Id From ClosingDisclosures where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdAps] Where ClosingDisclosureId In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdBorrowersTransactions] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdCalculatingCashToCloses] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdHeaders] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdLoanCalculations]Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdLoanCosts]Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdLoanDisclosures] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdLoanTerms] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdOtherCosts] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdProjectedPayments] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [CdSellersTransactions] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}'));
-                            Delete From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber] = '{closingNumber}');
-                            Delete[ClosingFileBuyerSellerNotaryBlocks] where[ClosingFileBuyerSellerId] In(Select id From[ClosingFileBuyerSellers] where[ClosingFileId] In(SELECT id FROM [ClosingFiles] where[ClosingNumber] = '{closingNumber}'));
-                            Delete from [BuyerSellerContactTypes] where CreatedBy_Id In(SELECT id FROM Members where email = 'autotestuser@gmail.com');
-                            Delete[ClosingFileBuyerSellers] where[ClosingFileId] In(SELECT id FROM [ClosingFiles] where[ClosingNumber] = '{closingNumber}');
-                            Delete[ActivityLoggers] where[ClosingFileId] In(SELECT id FROM [ClosingFiles] where[ClosingNumber] = '{closingNumber}');
-                            Delete[ClosingFileNotes] where[ClosingFileId] In(SELECT id FROM [ClosingFiles] where[ClosingNumber] = '{closingNumber}');
+                            Delete From [CdAirs] Where ClosingDisclosureId In(Select Id From ClosingDisclosures where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdAps] Where ClosingDisclosureId In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdBorrowersTransactions] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdCalculatingCashToCloses] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdHeaders] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdLoanCalculations]Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdLoanCosts]Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdLoanDisclosures] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdLoanTerms] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdOtherCosts] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdProjectedPayments] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            Delete From [CdSellersTransactions] Where [ClosingDisclosureId] In(Select Id From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}'));
+                            
+							DELETE FROM CdPayoffAndPayment where ClosingDisclosureId in( select id from ClosingDisclosures WHERE ClosingFileId IN (SELECT Id FROM ClosingFiles WHERE CreatedBy_Id IN (SELECT Id FROM Members WHERE  UserName  = '{email}')))
+							Delete From [ClosingDisclosures] where [ClosingFileId] In (SELECT id FROM [ClosingFiles] where [ClosingNumber]  = '{closingNumber}');
+                            Delete[ClosingFileBuyerSellerNotaryBlocks] where[ClosingFileBuyerSellerId] In(Select id From[ClosingFileBuyerSellers] where[ClosingFileId] In(SELECT id FROM [ClosingFiles] where[ClosingNumber]  = '{closingNumber}'));
+                            Delete from [BuyerSellerContactTypes] where CreatedBy_Id In(SELECT id FROM Members where email  = '{email}');
+                            Delete[ClosingFileBuyerSellers] where[ClosingFileId] In(SELECT id FROM [ClosingFiles] where[ClosingNumber]  = '{closingNumber}');
+                            Delete[ActivityLoggers] where[ClosingFileId] In(SELECT id FROM [ClosingFiles] where[ClosingNumber]  = '{closingNumber}');
+                            Delete[ClosingFileNotes] where[ClosingFileId] In(SELECT id FROM [ClosingFiles] where[ClosingNumber]  = '{closingNumber}');
 
-                            Delete[ClosingFiles] where[ClosingNumber] = '{closingNumber}' And CreatedBy_Id in(Select id From Members where Email = '{email}')";
+                            Delete[ClosingFiles] where[ClosingNumber]  = '{closingNumber}' And CreatedBy_Id in(Select id From Members where Email  = '{email}')";
             var delete = await _conn.Connection.QueryFirstOrDefaultAsync<string>(query);
 
         }

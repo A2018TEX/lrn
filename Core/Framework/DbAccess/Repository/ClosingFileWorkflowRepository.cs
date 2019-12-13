@@ -154,7 +154,7 @@ namespace Laren.E2ETests.Core.Framework.DbAccess.Repository
         }
         public string GetWorkflowTemplateId(string fileNumber)
         {
-            var query = $@"Select Id From WorkflowTemplates Where Name = '{fileNumber}'";
+            var query = $@"Select Max(Id) From WorkflowTemplates Where Name = '{fileNumber}'";
             var id = _conn.Connection.Query<string>(query).ToList().FirstOrDefault();
             return id;
         }
