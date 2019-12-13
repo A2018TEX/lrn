@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 
 namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
-{ 
+{
     public class BuyerPage : PageObject
     {
         public BuyerPage(IWebDriver driver) : base(driver) { }
@@ -56,11 +56,12 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
             sl.SelectByIndex(1);
             return this;
         }
-        public BuyerPage SelectTenancy()
+        public BuyerPage SelectTenancy(string name)
         {
             SelectElement sl = new SelectElement(Tanancy);
             sl.SelectByIndex(1);
             Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//span[@class='spinner']")));
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath($"//div[@class='list-wrapper-laren text-left']//span[contains(text(), '{name}')]")));
             return this;
         }
 

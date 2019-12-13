@@ -48,14 +48,13 @@ namespace Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock
                 return this;
             }
 
-            public SellersPage SelectExemptField()
+            public SellersPage SelectExemptField(string name)
             {
                 Thread.Sleep(1000);
                 SelectElement sl = new SelectElement(ExemptField);
-                sl.SelectByIndex(2); 
-                Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='spinner']")));
-                //Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='spinner spinner-sm']")));
+                sl.SelectByIndex(2);
                 Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//span[@class='spinner']")));
+                Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath($"//div[@class='list-wrapper-laren text-left']//span[contains(text(), '{name}')]")));
                 return this;
             }
             public SellersPage SelectMaritalStatus()

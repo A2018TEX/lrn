@@ -1,8 +1,10 @@
-﻿using Laren.E2ETests.Core.Framework.DbAccess.Repository;
+﻿using Laren.E2ETests.Core.Framework;
+using Laren.E2ETests.Core.Framework.DbAccess.Repository;
 using Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock;
 using Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock.Laren.E2ETests.Core.Framework.Pages.WorkFlowPages;
 using Laren.E2ETests.Core.Models;
 using Laren.E2ETests.Core.Pages;
+using Laren.E2ETests.Core.Utils;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
@@ -13,72 +15,31 @@ using static Laren.E2ETests.Core.Framework.Pages.ClosingFilesBlock.SellerPage;
 
 namespace Laren.E2ETests.Tests
 {
-
-    public class WorkWithClosingFileTestContext
+    [Parallelizable(ParallelScope.Fixtures)]
+    public class WorkWithClosingFileTest : BaseTest
     {
-        public string ClosingFileNumber;
-
-        public WorkWithClosingFileTestContext()
+        
+        [SetUp]
+        public void BeforeEachTests()
         {
-            var randValue = new Random().Next(10000, 500000);
-            ClosingFileNumber = $"CF{randValue}";
+            HelperSet.GetNeededData(UserEmail, ClosingFileNumber);
+            var login = new LoginPage(Driver, Configuration);
+
+            login
+                .SuccessLogin(UserEmail, UserPassword);
         }
 
-        public WorkWithClosingFileTestContext(string closingFileNumber)
-        {
-            ClosingFileNumber = closingFileNumber;
-        }
-    }
-
-    public class WorkWithClosingFileTest 
-    {
-        private readonly IConfiguration _configuration;
-
-        public WorkWithClosingFileTest()
-        {
-            _configuration = new ConfigurationFactory().CreateInstance();
-        }
-
-        public void BeforeEachTest(TestScope<WorkWithClosingFileTestContext> testScope)
-        {
-            var rand = new Random();
-            var rndValue = rand.Next(1000, 50000);
-            var tempUser = new User()
-            {
-                Email = $"email{rndValue}@gmail.com",
-                Password = "QWE123!!"
-            };
-
-            var id = testScope.HelperSet.CreateNewUser(tempUser.Email);
-            testScope.HelperSet.InsertClosingFileToDB(tempUser.Email, testScope.Context.ClosingFileNumber);
-            //testScope.HelperSet.HelperMethodAddWorkflow();
-            testScope.UserEmail = tempUser.Email;
-            testScope.UserId = id;
-        }
-
-        public void AfterEachTest(TestScope<WorkWithClosingFileTestContext> testScope)
-        {
-            var userRepository = new UserRepository(testScope.DbConnection);
-            userRepository.DeleteDataAfterEachTest(testScope.UserEmail);
-            testScope.HelperSet.DeleteAllTestData(testScope.UserEmail);
-            testScope.HelperSet.DeleteDataAfterWorkflowNotificationTest(testScope.UserEmail);
-            testScope.Driver.Close();
-            testScope.Driver.Quit();
-            testScope.DbConnection.CloseConnection();
-        }
 
         [Test]
-        [Parallelizable(ParallelScope.Self)]
         [Ignore("Need to change logic. remove WorkFlow Data")]
         [NUnit.Framework.Description("")]
+        [Obsolete]
         public void AddWorkflow()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                scope.HelperSet.AddHelperDataForWorkFlow();
-                var workFlownav = new WorkFlowPageNavigation(scope.Driver);
-                var workflow = new WorkflowPage(scope.Driver);
-                var closingFileWorkflowRep = new ClosingFileWorkflowRepository(scope.DbConnection);
+                HelperSet.AddHelperDataForWorkFlow();
+                var workFlownav = new WorkFlowPageNavigation(Driver);
+                var workflow = new WorkflowPage(Driver);
+                var closingFileWorkflowRep = new ClosingFileWorkflowRepository(DbConn);
 
                 workFlownav
                     .GoToAppropriateClosingFile()
@@ -88,12 +49,12 @@ namespace Laren.E2ETests.Tests
                     .ClickOnSetPlanButton()
                     .ClickOnAcceptWorkflowButton();
 
-                Assert.IsNotNull(closingFileWorkflowRep.GetIdOfJustCreatedWorkflowItems(scope.Context.ClosingFileNumber), "Workflow is sucsessfully added");
-            }
+                Assert.IsNotNull(closingFileWorkflowRep.GetIdOfJustCreatedWorkflowItems(ClosingFileNumber), "Workflow is sucsessfully added");
+            
         }
 
         [Test]
-        [Parallelizable(ParallelScope.Self)]
+        
         [NUnit.Framework.Description(@"
                 Title: Add Vendor With Lender Type
                 Pre -Condition:  1. User sign in with credentials: 
@@ -108,16 +69,16 @@ namespace Laren.E2ETests.Tests
         [Obsolete]
         public void AddVendorWithLenderType()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
+           
             {
                 var lenderVendorName = $"Lender{new Random().Next(1000, 50000)}";
                 var underwrittenVendorName = $"Lender{new Random().Next(1000, 50000)}";
-                scope.HelperSet.HelperMethodAddVendors(lenderVendorName, underwrittenVendorName);
-                var workFlownav = new WorkFlowPageNavigation(scope.Driver);
-                var vendors = new VendorsPage(scope.Driver);
-                var closingRep = new ClosingFilesRepository(scope.DbConnection);
-                var closingFileVendorRepository = new ClosingFileVendorRepository(scope.DbConnection);
-                var closinfFileId = closingRep.GetClosingFileIdByClosingNumber(scope.Context.ClosingFileNumber);
+                HelperSet.HelperMethodAddVendors(lenderVendorName, underwrittenVendorName);
+                var workFlownav = new WorkFlowPageNavigation(Driver);
+                var vendors = new VendorsPage(Driver);
+                var closingRep = new ClosingFilesRepository(DbConn);
+                var closingFileVendorRepository = new ClosingFileVendorRepository(DbConn);
+                var closinfFileId = closingRep.GetClosingFileIdByClosingNumber(ClosingFileNumber);
 
                 workFlownav
                    .GoToAppropriateClosingFile()
@@ -134,8 +95,7 @@ namespace Laren.E2ETests.Tests
             }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         [NUnit.Framework.Description(@"
                 Title: Add Vendor With Lender Type
                 Pre -Condition:  1. User sign in with credentials: 
@@ -150,16 +110,15 @@ namespace Laren.E2ETests.Tests
         [Obsolete]
         public void AddVendorWithUnderwriterType()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
+           
                 var lenderVendorName = $"Lender{new Random().Next(1000, 50000)}";
                 var underwrittenVendorName = $"Lender{new Random().Next(1000, 50000)}";
-                scope.HelperSet.HelperMethodAddVendors(lenderVendorName, underwrittenVendorName);
-                var workFlownav = new WorkFlowPageNavigation(scope.Driver);
-                var vendors = new VendorsPage(scope.Driver);
-                var closingRep = new ClosingFilesRepository(scope.DbConnection);
-                var closingFileVendorRepository = new ClosingFileVendorRepository(scope.DbConnection);
-                var closinfFileId = closingRep.GetClosingFileIdByClosingNumber(scope.Context.ClosingFileNumber);
+                HelperSet.HelperMethodAddVendors(lenderVendorName, underwrittenVendorName);
+                var workFlownav = new WorkFlowPageNavigation(Driver);
+                var vendors = new VendorsPage(Driver);
+                var closingRep = new ClosingFilesRepository(DbConn);
+                var closingFileVendorRepository = new ClosingFileVendorRepository(DbConn);
+                var closinfFileId = closingRep.GetClosingFileIdByClosingNumber(ClosingFileNumber);
 
                 workFlownav
                   .GoToAppropriateClosingFile()
@@ -173,11 +132,9 @@ namespace Laren.E2ETests.Tests
                     .ClickFirstVendorNameInList();
 
                 Assert.IsNotNull(closingFileVendorRepository.GetClosingFileVendorIdByClosingFileId(closinfFileId, underwrittenVendorName), "Vendor With Underwriter Type Is Added");
-            }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         [Description(@"
                 Title: Add Workflow Reminder Notification
                 Pre -Condition:  1. User sign in with credentials: 
@@ -199,17 +156,15 @@ namespace Laren.E2ETests.Tests
                 11. Click field 'Days' and type any number.
                 12. Click field 'Time' and select from drop-down list proposed time.
                 ER: 'Notification' is successfully created.'")]
-        [Obsolete]
+        [Obsolete]       
         public void AddWorkflowNotification()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                scope.HelperSet.HelperMethodAddWorkflow();
+                HelperSet.HelperMethodAddWorkflow();
 
-                var workFlownav = new WorkFlowPageNavigation(scope.Driver);
-                var workflow = new WorkflowPage(scope.Driver);
+                var workFlownav = new WorkFlowPageNavigation(Driver);
+                var workflow = new WorkflowPage(Driver);
                 var notificationText = DateTime.Now.ToString();
-                var closingFileWorkflowItemNotificationsRepository = new ClosingFileWorkflowRepository(scope.DbConnection);
+                var closingFileWorkflowItemNotificationsRepository = new ClosingFileWorkflowRepository(DbConn);
 
                 workFlownav
                     .GoToAppropriateClosingFile()
@@ -230,39 +185,36 @@ namespace Laren.E2ETests.Tests
                     .WaitNotificationsCounter();
 
                 Assert.IsNotNull(closingFileWorkflowItemNotificationsRepository.GetIdOfJustCreatedReminderNotification(notificationText), "Reminder Notification is sucsessfully added");
-            }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         [Obsolete]
         public void AddBuyerAddressTest()
         {
             Console.WriteLine("AddBuyerAddressTest");
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                var userRep = new UserRepository(scope.DbConnection);
-                var closingFileRep = new ClosingFilesRepository(scope.DbConnection);
-                var workFlowPage = new WorkFlowPageNavigation(scope.Driver);
-                var buyerPage = new BuyerPage(scope.Driver);
-                var memberRep = new UserRepository(scope.DbConnection);
-                var appMemberRep = new AppMemberRepository(scope.DbConnection);
+           
+                var userRep = new UserRepository(DbConn);
+                var closingFileRep = new ClosingFilesRepository(DbConn);
+                var workFlowPage = new WorkFlowPageNavigation(Driver);
+                var buyerPage = new BuyerPage(Driver);
+                var memberRep = new UserRepository(DbConn);
+                var appMemberRep = new AppMemberRepository(DbConn);
 
                 var fName = $"fname{new Random().Next(1000, 50000)}";
                 var lName = $"lname{new Random().Next(1000, 50000)}";
 
                 appMemberRep.AddNewAppMember(fName, lName);
 
-                var closingFileId = closingFileRep.GetClosingFileId(scope.Context.ClosingFileNumber);
+                var closingFileId = closingFileRep.GetClosingFileId(ClosingFileNumber);
 
-                scope.HelperSet.HelperMethodAddWorkflow();
+                HelperSet.HelperMethodAddWorkflow();
 
-                closingFileRep.AddSellerBuyerToClosingFile(closingFileId, scope.UserId);
-                var closingFile = closingFileRep.SelectClosingFileWithBuyer(scope.Context.ClosingFileNumber, scope.UserId);
+                closingFileRep.AddSellerBuyerToClosingFile(closingFileId, UserId);
+                var closingFile = closingFileRep.SelectClosingFileWithBuyer(ClosingFileNumber, UserId);
                 var closingFileNumber = closingFile.ClosingNumber;
                 var buyerFName = closingFile.FirstName;
                 var buyerLName = closingFile.LastName;
-                scope.Driver.Manage().Window.Maximize();
+                Driver.Manage().Window.Maximize();
                 workFlowPage
                     .GoToAppropriateClosingFile()
                     .ClickBuyerMenuItem()
@@ -273,23 +225,21 @@ namespace Laren.E2ETests.Tests
                 Thread.Sleep(1000);
 
                 Assert.IsTrue(closingFileRep.GetAddressId().Contains(closingFileRep.GetAddressIdForBuyer(buyerFName)));
-            }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]  
         public void AddBuyerToClosingFile()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
+           
             {
-                var workFlowPage = new WorkFlowPageNavigation(scope.Driver);
-                var buyerPage = new BuyerPage(scope.Driver);
-                var appMembersRep = new AppMemberRepository(scope.DbConnection);
+                var workFlowPage = new WorkFlowPageNavigation(Driver);
+                var buyerPage = new BuyerPage(Driver);
+                var appMembersRep = new AppMemberRepository(DbConn);
                 
-                scope.HelperSet.HelperMethodAddWorkflow();
+                HelperSet.HelperMethodAddWorkflow();
 
-                var firstName = scope.Configuration.GetSection("BuyerFirstName").Value;
-                var lastName = scope.Configuration.GetSection("BuyerLastName").Value;
+                var firstName = Configuration.GetSection("BuyerFirstName").Value;
+                var lastName = Configuration.GetSection("BuyerLastName").Value;
 
                 workFlowPage
                     .GoToAppropriateClosingFile()
@@ -302,14 +252,13 @@ namespace Laren.E2ETests.Tests
                     .TypeLastName(lastName)
                     .SelectGender()
                     .SelectMaritalStatus()
-                    .SelectTenancy();
+                    .SelectTenancy(Configuration.GetSection("BuyerFirstName").Value);
 
                 Assert.AreEqual(lastName, appMembersRep.GetSellerLastName(firstName), "Buyer Was created");
             }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         [NUnit.Framework.Description(@"
                 Title: Add Comment to Workflow Task
                 Pre -Condition:  1. User sign in with credentials: 
@@ -327,12 +276,10 @@ namespace Laren.E2ETests.Tests
                 ER: Comment at Workflow Task is successfully created.")]
         public void AddCommentToWorkflow()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                scope.HelperSet.HelperMethodAddWorkflow();
+                HelperSet.HelperMethodAddWorkflow();
 
-                var workFlownav = new WorkFlowPageNavigation(scope.Driver);
-                var workflow = new WorkflowPage(scope.Driver);
+                var workFlownav = new WorkFlowPageNavigation(Driver);
+                var workflow = new WorkflowPage(Driver);
                 var comment = DateTime.Now.ToString();
 
                 workFlownav
@@ -346,11 +293,9 @@ namespace Laren.E2ETests.Tests
                     .ClickOnSaveCommentButton();
 
                 Assert.IsNotNull(workflow.CheckThatCommentIsCreated(comment));
-            }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]               
         [Description(@"
         DataRow# 1
                 Title: Add Closing File
@@ -370,41 +315,38 @@ namespace Laren.E2ETests.Tests
         [Obsolete]
         public void AddClosingFile()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                scope.HelperSet.HelperMethodAddWorkflow();
+            HelperSet.HelperMethodAddWorkflow();
 
-                var headerMenu = new HeaderManu(scope.Driver);
-                var login = new LoginPage(scope.Driver, scope.Configuration);
-                var closingFileRep = new ClosingFilesRepository(scope.DbConnection);
-                headerMenu
-                    .ClickAddCircleButton()
-                    .ClickClosingButton()
-                    .TypeFilenumberField(scope.Context.ClosingFileNumber)
-                    .ChooseTransactionTypeValue()
-                    .ChooseFinanceTypeValue()
-                    .ChooseUsageTypeValue()
-                    .ChoosePropertyTypeValue()
-                    .ClickNextButton();
-                var dbFileNumber = closingFileRep.GetClosingNumberList(scope.Context.ClosingFileNumber);
+            string closingFileNumber = $"CF{new Random().Next(200, 500000)}";
+            var headerMenu = new HeaderManu(Driver);
+            var login = new LoginPage(Driver, Configuration);
+            var closingFileRep = new ClosingFilesRepository(DbConn);
+            headerMenu
+                .ClickAddCircleButton()
+                .ClickClosingButton()
+                .TypeFilenumberField(closingFileNumber)
+                .ChooseTransactionTypeValue()
+                .ChooseFinanceTypeValue()
+                .ChooseUsageTypeValue()
+                .ChoosePropertyTypeValue()
+                .ClickNextButton();
+            var dbFileNumber = closingFileRep.GetClosingNumberList(closingFileNumber);
 
-                Assert.IsTrue(dbFileNumber.Contains(scope.Context.ClosingFileNumber), "New ClosingFile is created");
-            }
+            Assert.IsTrue(dbFileNumber.Contains(closingFileNumber), "New ClosingFile is created");
+
+            closingFileRep.DeleteClosingFiles(UserEmail, closingFileNumber);
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         [Ignore("Need to fix Assert")]
         [NUnit.Framework.Description(@"
 
                 ")]
         public void AddImportantDatesTest()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                var workFlowPage = new WorkFlowPageNavigation(scope.Driver);
-                var importantDatesPage = new ImportantDatesPage(scope.Driver);
-                var closingRep = new ClosingFilesRepository(scope.DbConnection);
+                var workFlowPage = new WorkFlowPageNavigation(Driver);
+                var importantDatesPage = new ImportantDatesPage(Driver);
+                var closingRep = new ClosingFilesRepository(DbConn);
 
                 var dtFunding = $"{DateTime.Now.Date.AddDays(6).ToString($"{ 0:dddd',' MMMM d',' yyyy}")}";
                 var dtClosing = $"{DateTime.Now.Date.AddDays(5).ToString($"{ 0:dddd',' MMMM d',' yyyy}")}";
@@ -429,28 +371,23 @@ namespace Laren.E2ETests.Tests
                     .SetSellerSignInDate(dtSellerSigning)
                     .ClickOkButtonClosingDateModalWindow();
 
-                var closingDate = closingRep.GetClosingFileDate(scope.Context.ClosingFileNumber, scope.UserEmail);
+                var closingDate = closingRep.GetClosingFileDate(ClosingFileNumber, UserEmail);
 
                 Assert.AreEqual(dtClosing, closingDate, "Date is edited");
-
-            }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         public void AddMoneyTest()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                scope.HelperSet.HelperMethodAddWorkflow();
+                HelperSet.HelperMethodAddWorkflow();
 
-                var workFlowPage = new WorkFlowPageNavigation(scope.Driver);
-                var moneyPage = new MoneyPage(scope.Driver);
-                var summarypage = new SummaryPage(scope.Driver);
-                var closingRep = new ClosingFilesRepository(scope.DbConnection);
-                var closingFileEscrowDepRep = new ClosingFileEscrowDepositsRepository(scope.DbConnection);
+                var workFlowPage = new WorkFlowPageNavigation(Driver);
+                var moneyPage = new MoneyPage(Driver);
+                var summarypage = new SummaryPage(Driver);
+                var closingRep = new ClosingFilesRepository(DbConn);
+                var closingFileEscrowDepRep = new ClosingFileEscrowDepositsRepository(DbConn);
 
-                scope.HelperSet.AddBankAndBankAccounts();
+                HelperSet.AddBankAndBankAccounts();
 
                 Random rand = new Random();
                 decimal purchasePrice = rand.Next(10000, 50000);
@@ -469,23 +406,21 @@ namespace Laren.E2ETests.Tests
 
                 decimal eRexpPrice = purchasePrice;
                 decimal erEscrowDeposit = escrowDep;
-                var wait = new WebDriverWait(scope.Driver, TimeSpan.FromSeconds(10));
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
 
-                wait.Until((Driver) => closingRep.GetPurchasePrice(scope.Context.ClosingFileNumber) == eRexpPrice);
+                //wait.Until((Driver) => closingRep.GetPurchasePrice(ClosingFileNumber) == eRexpPrice);
 
-                decimal expPurchPrice = closingRep.GetPurchasePrice(scope.Context.ClosingFileNumber);
-                decimal expEscrDeposit = closingFileEscrowDepRep.GetEscrowDeposit(scope.Context.ClosingFileNumber);
+                decimal expPurchPrice = closingRep.GetPurchasePrice(ClosingFileNumber);
+                decimal expEscrDeposit = closingFileEscrowDepRep.GetEscrowDeposit(ClosingFileNumber);
 
                 Assert.Multiple(() =>
                 {
                     Assert.AreEqual(eRexpPrice, expPurchPrice, "Purchase Price is changed");
                     Assert.AreEqual(erEscrowDeposit, expEscrDeposit, "Escrow Price is changed");
                 });
-            }
         }
 
         [Test]
-        [Parallelizable(ParallelScope.Self)]
         [NUnit.Framework.Description(@"
                 Title: Add Note to 'Notes'
                 Pre -Condition:  1. User sign in with credentials: 
@@ -501,13 +436,11 @@ namespace Laren.E2ETests.Tests
                 ER: Note is successfully created.")]
         public void AddNoteToNotes()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                scope.HelperSet.HelperMethodAddWorkflow();
+                HelperSet.HelperMethodAddWorkflow();
 
-                var workFlownav = new WorkFlowPageNavigation(scope.Driver);
-                var notes = new NotesPage(scope.Driver);
-                var closingRep = new ClosingFilesRepository(scope.DbConnection);
+                var workFlownav = new WorkFlowPageNavigation(Driver);
+                var notes = new NotesPage(Driver);
+                var closingRep = new ClosingFilesRepository(DbConn);
                 var comment = DateTime.Now.ToString();
                 workFlownav
                     .GoToWorkFlowPage()
@@ -519,24 +452,20 @@ namespace Laren.E2ETests.Tests
                     .ClickOnSaveCommentButton();
 
                 Assert.IsTrue(notes.CheckThatCommentIsCreated(comment));
-            }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         [Ignore("NEED TO ADD ASSERTS")]
         public void AddParticipants()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                var workFlowPage = new WorkFlowPageNavigation(scope.Driver);
-                var participantPage = new ParticipantsPage(scope.Driver);
+                var workFlowPage = new WorkFlowPageNavigation(Driver);
+                var participantPage = new ParticipantsPage(Driver);
 
                 var firstName = $"AutoTest{DateTime.Now.ToString("ddmmyy")}";
                 var lastName = $"AutoTest{DateTime.Now.ToString("ddmmyy")}";
 
                 workFlowPage
-                    .GoToWorkFlowPage(/*scope.Configuration.GetSection("NewUserEmail").Value, scope.Configuration.GetSection("NewUserPassword").Value*/)
+                    .GoToWorkFlowPage(/*Configuration.GetSection("NewUserEmail").Value, Configuration.GetSection("NewUserPassword").Value*/)
                         .GoToAppropriateClosingFile()
                         .ClickDetailsMenuItem();
                 participantPage
@@ -553,11 +482,9 @@ namespace Laren.E2ETests.Tests
                 //    Assert.AreEqual();
                 //    Assert.AreEqual();
                 //});
-            }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         [Ignore("Need to fix Assert")]
         [NUnit.Framework.Description(@"
                 DataRow# 2
@@ -580,13 +507,11 @@ namespace Laren.E2ETests.Tests
         [Obsolete]
         public void AddDetailPropertyToClosingFile()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                //scope.HelperSet.DisplayWidget("Property Maps");
+                //HelperSet.DisplayWidget("Property Maps");
 
-                var workFlownav = new WorkFlowPageNavigation(scope.Driver);
-                var property = new PropertyPage(scope.Driver);
-                var summaryPage = new SummaryPage(scope.Driver);
+                var workFlownav = new WorkFlowPageNavigation(Driver);
+                var property = new PropertyPage(Driver);
+                var summaryPage = new SummaryPage(Driver);
 
                 workFlownav
                    .GoToWorkFlowPage()
@@ -600,25 +525,21 @@ namespace Laren.E2ETests.Tests
                 //    .ClickConfirmButton();
                 //workFlownav
                 //    .ClickSummaryMenuItem();
-                scope.Driver.Navigate().Refresh();
+                Driver.Navigate().Refresh();
 
                 var addresslocation = summaryPage.GetLocation();
                 Assert.IsTrue(addresslocation.Contains("Hillsboro"));
-            }
         }
 
-        [Test]
-        [Parallelizable(ParallelScope.Self)]
+        [Test]        
         public void AddSellerToClosingFile()
         {
-            using (var scope = new TestScope<WorkWithClosingFileTestContext>(_configuration, BeforeEachTest, AfterEachTest))
-            {
-                scope.HelperSet.HelperMethodAddWorkflow();
+                HelperSet.HelperMethodAddWorkflow();
 
-                var workFlowPage = new WorkFlowPageNavigation(scope.Driver);
-                var sellerPage = new SellersPage(scope.Driver);
-                var appMembersRep = new AppMemberRepository(scope.DbConnection);
-                var closingRep = new ClosingFilesRepository(scope.DbConnection);
+                var workFlowPage = new WorkFlowPageNavigation(Driver);
+                var sellerPage = new SellersPage(Driver);
+                var appMembersRep = new AppMemberRepository(DbConn);
+                var closingRep = new ClosingFilesRepository(DbConn);
 
                 var closinfFileName = closingRep.GetClosingNumberListWithoutBuyerSeller();
 
@@ -627,21 +548,31 @@ namespace Laren.E2ETests.Tests
                     .GoToAppropriateClosingFile()
                     .ClickSellerMenuItem();
 
-                sellerPage
-                    .ClickAddSellersButton()
-                    .SelectSellerType()
-                    .TypeFirstName(scope.Configuration.GetSection("SallerFirstName").Value)
-                    .TypeLastName(scope.Configuration.GetSection("SellerLastName").Value)
-                    .TypeEmail(scope.Configuration.GetSection("SellerEmail").Value)
-                    .SelectGender()
-                    .SelectMaritalStatus()
-                    .SelectExemptField();
+            sellerPage
+                .ClickAddSellersButton()
+                .SelectSellerType()
+                .TypeFirstName(Configuration.GetSection("SallerFirstName").Value)
+                .TypeLastName(Configuration.GetSection("SellerLastName").Value)
+                .TypeEmail(Configuration.GetSection("SellerEmail").Value)
+                .SelectGender()
+                .SelectMaritalStatus()
+                .SelectExemptField(Configuration.GetSection("SallerFirstName").Value);
 
-                Assert.AreEqual(scope.Configuration.GetSection("SellerLastName").Value, appMembersRep.GetSellerLastName(scope.Configuration.GetSection("SallerFirstName").Value));
+                Assert.AreEqual(Configuration.GetSection("SellerLastName").Value, appMembersRep.GetSellerLastName(Configuration.GetSection("SallerFirstName").Value));
 
-                var appMemberRep = new AppMemberRepository(scope.DbConnection);
-                appMemberRep.DeleteSellerBuyerByFirstName(scope.Configuration.GetSection("SallerFirstName").Value);
-            }
+                var appMemberRep = new AppMemberRepository(DbConn);
+                appMemberRep.DeleteSellerBuyerByFirstName(Configuration.GetSection("SallerFirstName").Value);
+        }
+
+        [TearDown]       
+        public void AfterEachTests()
+        {
+            var userRepository = new UserRepository(DbConn);
+            LocalStorageJS localstorage = new LocalStorageJS(Driver);
+            localstorage.CleanSessionStorage();
+            localstorage.ClearLocalStorage();
+            userRepository.DeleteDataAfterEachTest(UserEmail);
+            HelperSet.SignOut();
         }
     }
 }
