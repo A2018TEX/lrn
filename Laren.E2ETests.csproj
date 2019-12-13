@@ -107,10 +107,10 @@
 
   <ItemGroup>
     <Content Update="C:\Users\Anuitex\.nuget\packages\allure.commons\2.4.2.4\contentFiles\any\netstandard2.0\allureConfig.Template.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="C:\Users\Anuitex\.nuget\packages\noksa.nunit.allure\3.0.4\contentFiles\any\netstandard2.0\allureConfig.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
