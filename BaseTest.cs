@@ -1,5 +1,4 @@
-﻿using Allure.Commons;
-using Laren.E2ETests.Core.Framework;
+﻿using Laren.E2ETests.Core.Framework;
 using Laren.E2ETests.Core.Framework.DbAccess;
 using Laren.E2ETests.Core.Models;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +13,7 @@ using System.IO;
 
 namespace Laren.E2ETests
 {
-    public class BaseTest : AllureReport
+    public class BaseTest /*: AllureReport*/
     {
         private IWebDriver _driver;
         private DataBaseConnection _dbConn;
